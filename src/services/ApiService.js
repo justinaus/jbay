@@ -31,10 +31,12 @@ class ApiService {
     
     const retSuccess = {
       code: '200',
-      token: 'abcde',
-      refreshToken: 'fghij',
-      isAdmin: true,
-      loginId: 'justinaus',
+      data: {
+        token: 'abcde',
+        refreshToken: 'fghij',
+        isAdmin: true,
+        loginId: 'justinaus',
+      }
     }
     const retFail = {
       text: 'failed!'

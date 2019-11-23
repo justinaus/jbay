@@ -26,7 +26,7 @@ export default {
     onEnterKey() {
       this.submit();
     },
-    async submit() {
+    submit() {
       const loginId = this.loginId.trim();
       const password = this.password.trim();
 
@@ -36,8 +36,21 @@ export default {
         loginId: loginId,
         password: password
       }
+      this.postLogin( obj );
+    },
+    async postLogin( obj ) {
       const result = await ApiService.shared.login( obj );
-      console.log( result );
+      
+      if( result.code !== '200' ) {
+        alert( result.text );
+        return;
+      }
+
+      LocalStorageManager.shared.setLoginData( result.data );
+
+      this.$router.push({
+        path: this.$routerPath.HOME
+      }); 
     }
   }
 }
