@@ -48,8 +48,10 @@ export default {
 
       LocalStorageManager.shared.setLoginData( result.data );
 
+      const toPath = this.$route.query.redirect;
+
       this.$router.push({
-        path: this.$routerPath.HOME
+        path: toPath || this.$routerPath.HOME
       }); 
     }
   }

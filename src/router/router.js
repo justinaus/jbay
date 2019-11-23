@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import routerPath from './routerPath'
 import menuId from '@/constants/menuId'
+import LocalStorageManager from '@/LocalStorageManager'
 
 Vue.use(Router)
 
@@ -32,6 +33,7 @@ const router = new Router({
       path: routerPath.ITEMS,
       meta: {
         menuId: menuId.ITEM,
+        requiresAuth: true,
       },
       component: () => import('../pages/admin/item/Items.vue')
     },
@@ -39,6 +41,7 @@ const router = new Router({
       path: routerPath.ITEM,
       meta: {
         menuId: menuId.ITEM,
+        requiresAuth: true,
       },
       component: () => import('../pages/admin/item/Item.vue')
     },
@@ -46,6 +49,7 @@ const router = new Router({
       path: routerPath.BIDS,
       meta: {
         menuId: menuId.BID,
+        requiresAuth: true,
       },
       component: () => import('../pages/admin/bid/Bids.vue')
     },
@@ -53,6 +57,7 @@ const router = new Router({
       path: routerPath.BID,
       meta: {
         menuId: menuId.BID,
+        requiresAuth: true,
       },
       component: () => import('../pages/admin/bid/Bid.vue')
     },
@@ -61,6 +66,7 @@ const router = new Router({
       meta: {
         menuId: menuId.MANAGEMENT,
         subMenuId: menuId.MANAGEMENT_USER,
+        requiresAuth: true,
       },
       component: () => import('../pages/admin/management/user/Users.vue')
     },
@@ -69,6 +75,7 @@ const router = new Router({
       meta: {
         menuId: menuId.MANAGEMENT,
         subMenuId: menuId.MANAGEMENT_USER,
+        requiresAuth: true,
       },
       component: () => import('../pages/admin/management/user/User.vue')
     },
@@ -77,11 +84,31 @@ const router = new Router({
       meta: {
         menuId: menuId.MANAGEMENT,
         subMenuId: menuId.MANAGEMENT_ETC,
+        requiresAuth: true,
       },
       component: () => import('../pages/admin/management/etc/Etc.vue')
     },
     { path: '*', redirect: routerPath.HOME }
   ]
+})
+
+router.beforeEach(async (to, _from, next) => {
+  const loginData = LocalStorageManager.shared.getLoginData();
+
+  const isRequiresAuth = to.matched.some(record => record.meta.requiresAuth);
+
+  if ( isRequiresAuth ) {
+    if( !loginData ) {
+      next({
+        path: routerPath.ADMIN_LOGIN,
+        query: { redirect: to.fullPath },
+      } );
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
 })
 
 export default router
