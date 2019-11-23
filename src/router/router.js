@@ -31,6 +31,26 @@ const router = new Router({
       path: routerPath.ITEM,
       component: () => import('../pages/admin/item/Item.vue')
     },
+    {
+      path: routerPath.BIDS,
+      component: () => import('../pages/admin/bid/Bids.vue')
+    },
+    {
+      path: routerPath.BID,
+      component: () => import('../pages/admin/bid/Bid.vue')
+    },
+    {
+      path: routerPath.MANAGEMENT_USERS,
+      component: () => import('../pages/admin/management/user/Users.vue')
+    },
+    {
+      path: routerPath.MANAGEMENT_USER,
+      component: () => import('../pages/admin/management/user/User.vue')
+    },
+    {
+      path: routerPath.MANAGEMENT_ETC,
+      component: () => import('../pages/admin/management/etc/Etc.vue')
+    },
     { path: '*', redirect: routerPath.HOME }
   ]
 })
