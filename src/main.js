@@ -9,6 +9,7 @@ import '@justinaus/vue-components/dist/justinaus.css'
 Vue.config.productionTip = false
 
 Vue.prototype.$routerPath = routerPath;
+Vue.prototype.$apiPath = apiPath;
 
 Vue.use(jvc.Plugin)
 
