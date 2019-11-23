@@ -1,6 +1,8 @@
 <template>
   <div>
     login
+    <Input :value.sync="userId" />
+    <Input :value.sync="password" type="password" />
   </div>
 </template>
 
@@ -8,7 +10,6 @@
 import LocalStorageManager from '@/LocalStorageManager'
 
 export default {
-  name: 'Login',
   data() {
     return {
       userId: '',
