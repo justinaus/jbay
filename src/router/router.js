@@ -25,6 +25,10 @@ const router = new Router({
       redirect: routerPath.ITEMS
     },
     {
+      path: routerPath.ADMIN_LOGIN,
+      component: () => import('../pages/admin/Login.vue')
+    },
+    {
       path: routerPath.ITEMS,
       meta: {
         menuId: menuId.ITEM,
