@@ -55,21 +55,24 @@ const router = new Router({
     {
       path: routerPath.MANAGEMENT_USERS,
       meta: {
-        menuId: menuId.MANAGEMENT_USER,
+        menuId: menuId.MANAGEMENT,
+        subMenuId: menuId.MANAGEMENT_USER,
       },
       component: () => import('../pages/admin/management/user/Users.vue')
     },
     {
       path: routerPath.MANAGEMENT_USER,
       meta: {
-        menuId: menuId.MANAGEMENT_USER,
+        menuId: menuId.MANAGEMENT,
+        subMenuId: menuId.MANAGEMENT_USER,
       },
       component: () => import('../pages/admin/management/user/User.vue')
     },
     {
       path: routerPath.MANAGEMENT_ETC,
       meta: {
-        menuId: menuId.MANAGEMENT_ETC,
+        menuId: menuId.MANAGEMENT,
+        subMenuId: menuId.MANAGEMENT_ETC,
       },
       component: () => import('../pages/admin/management/etc/Etc.vue')
     },

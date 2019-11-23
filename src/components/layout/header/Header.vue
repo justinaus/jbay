@@ -5,7 +5,9 @@
       <MenuItem v-for="item in menuDataList" :key="item.id"
         :text="item.text"
         :link="item.link"
-        :isSelected="item.id === selectedMenuId" />
+        :isSelected="item.id === selectedMenuId"
+        :arrSub="item.arrSub"
+        :selectedSubMenuId="selectedSubMenuId" />
     </ul>
   </div>
 </template>
@@ -23,13 +25,15 @@ export default {
     return {
       menuDataList: [],
       selectedMenuId: null,
+      selectedSubMenuId: null,
     }
   },
   beforeMount() {
     this.menuDataList = adminMenu;
 
-    const { menuId } = this.$route.meta;
+    const { menuId, subMenuId } = this.$route.meta;
     this.selectedMenuId = menuId;
+    if( subMenuId ) this.selectedSubMenuId = subMenuId;
   }
 }
 </script>
