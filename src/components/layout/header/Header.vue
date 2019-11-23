@@ -2,9 +2,10 @@
   <div>
     header
     <ul>
-      <MenuItem v-for="item in menuDataList" :key="item.menuId"
+      <MenuItem v-for="item in menuDataList" :key="item.id"
         :text="item.text"
-        :link="item.link" />
+        :link="item.link"
+        :isSelected="item.id === selectedMenuId" />
     </ul>
   </div>
 </template>
@@ -21,10 +22,14 @@ export default {
   data() {
     return {
       menuDataList: [],
+      selectedMenuId: null,
     }
   },
   beforeMount() {
     this.menuDataList = adminMenu;
+
+    const { menuId } = this.$route.meta;
+    this.selectedMenuId = menuId;
   }
 }
 </script>
