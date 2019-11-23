@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router/router'
 import routerPath from './router/routerPath'
+import apiPath from './services/apiPath'
 
 import jvc from '@justinaus/vue-components'
 import '@justinaus/vue-components/dist/justinaus.css'
