@@ -5,26 +5,43 @@ import LocalStorageManager from '@/LocalStorageManager'
 class ApiService {
   static instance;
 
+  axios = axios.create({
+    baseURL: '/api',
+  });
+
   static get shared() {
     if( this.instance ) {
       return this.instance;
     }
 
     this.instance = new ApiService();
-
-    this.axios = axios.create({
-      baseURL: '/api',
-    });
-
     return this.instance;
   }
 
   async login( obj, userCode ) {
     const url = apiPath.LOGIN;
-    // not need token.
     const config = this.getConfig( null, userCode );
 
-    const result = await this.post( url, obj, config );
+    // const result = await this.post( url, obj, config );
+
+    // === temp test ====================================
+    const isSuccess = obj.loginId === obj.password;
+
+    await new Promise( resolve => setTimeout( resolve, 500 ) );
+    
+    const retSuccess = {
+      code: '200',
+      token: 'abcde',
+      refreshToken: 'fghij',
+      isAdmin: true,
+      loginId: 'justinaus',
+    }
+    const retFail = {
+      text: 'failed!'
+    } 
+    const result = isSuccess ? retSuccess : retFail;
+    // === temp test ====================================
+
     return result
   }
 
