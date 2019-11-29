@@ -9,9 +9,8 @@
       
       <Footer />
     </div>
-    <Popup>
-      <slot name="popup" />
-    </Popup>
+    <slot name="popup" />
+    <PopAlert />
   </div>
 </template>
 
@@ -19,14 +18,14 @@
 import Header from './header/Header'
 import Content from './content/Content'
 import Footer from './footer/Footer'
-import Popup from './popup/Popup'
+import PopAlert from '@/components/common/PopAlert'
 
 export default {
   components: {
     Header,
     Content,
     Footer,
-    Popup
+    PopAlert,
   },
 }
 </script>
