@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router/router'
 import routerPath from './router/routerPath'
+import store from './store'
 import apiPath from './services/apiPath'
 
 import jvc from '@justinaus/vue-components'
@@ -23,5 +24,6 @@ Vue.use(BootstrapVue)
 
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')
