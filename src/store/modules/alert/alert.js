@@ -4,10 +4,10 @@ import { SHOW_ALERT_MUTATION, HIDE_ALERT_MUTATION } from './mutation'
 export default {
   state: {
     isVisible: false,
-    title: 'alert',
+    title: null,
     text: null,
-    btnPrimaryText: 'ok',
-    btnSecondaryText: 'cancel',
+    btnPrimaryText: null,
+    btnSecondaryText: null,
     onClickPrimary: null,
     onClickSecondary: null,
   },
@@ -30,28 +30,16 @@ export default {
 
       state.text = params.text;
 
-      state.btnPrimaryText = params.btnPrimaryText || 'ok';
-      state.btnSecondaryText = params.btnSecondaryText || 'cancel';
+      state.title = params.title;
+      state.btnPrimaryText = params.btnPrimaryText;
+      state.btnSecondaryText = params.btnSecondaryText;
 
-      state.onClickPrimary = () => {
-        state.isVisible = false;
-
-        if( params.onClickPrimary ) {
-          params.onClickPrimary();
-        }
-      }
-
-      state.onClickSecondary = () => {
-        state.isVisible = false;
-
-        if( params.onClickSecondary ) {
-          params.onClickSecondary();
-        }
-      }
+      state.onClickPrimary = params.onClickPrimary;
+      state.onClickSecondary = params.onClickSecondary;
 
       state.isVisible = true;
     },
-    [ SHOW_ALERT_MUTATION ]( state, payload ) {
+    [ HIDE_ALERT_MUTATION ]( state, payload ) {
       state.isVisible = false;
     }
   }
