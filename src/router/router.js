@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import routerPath from './routerPath'
 import menuId from '@/constants/menuId'
 import LocalStorageManager from '@/LocalStorageManager'
+import store from '@/store'
+import { HIDE_ALERT_ACTION } from '@/store/modules/alert/action'
 
 Vue.use(Router)
 
@@ -93,6 +95,8 @@ const router = new Router({
 })
 
 router.beforeEach(async (to, _from, next) => {
+  store.dispatch( HIDE_ALERT_ACTION );
+
   const loginData = LocalStorageManager.shared.getLoginData();
 
   const isRequiresAuth = to.matched.some(record => record.meta.requiresAuth);
