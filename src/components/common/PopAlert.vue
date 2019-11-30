@@ -1,13 +1,16 @@
 <template>
   <Popup>
-    <header>
-      <h5>{{ popAlertTitle }}</h5>
-    </header>
-    <div class="content">{{ popAlertText }}</div>
-    <footer>
-      <b-button variant="primary" @click="onClickPrimary">{{ popAlertBtnPrimaryText }}</b-button>
-      <b-button variant="secondary" v-if="isYN" @click="onClickSecondary">{{ popAlertBtnSecondaryText }}</b-button>
-    </footer>
+    <!-- Modal content -->
+    <div class="modal_content">
+      <header>
+        <h5>{{ popAlertTitle }}</h5>
+      </header>
+      <div class="content">{{ popAlertText }}</div>
+      <footer>
+        <b-button variant="primary" @click="onClickPrimary">{{ popAlertBtnPrimaryText }}</b-button>
+        <b-button variant="secondary" v-if="isYN" @click="onClickSecondary">{{ popAlertBtnSecondaryText }}</b-button>
+      </footer>
+    </div>
   </Popup>
 </template>
 
@@ -54,6 +57,14 @@ export default {
 </script>
 
 <style scoped>
+/* Modal Content/Box */
+.modal_content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
 header {
   padding: 10px;
 }
@@ -62,7 +73,7 @@ footer {
   display: flex;
   justify-content: center;
 }
-.content {
+.modal_content .content {
   padding: 10px;
 }
 button {
