@@ -1,5 +1,5 @@
 <template>
-  <div class="modal">
+  <div class="modal" v-scroll-lock="isModalMode">
     <!-- Modal content -->
     <div class="modal-content">
       <slot />
@@ -9,7 +9,14 @@
 
 <script>
 export default {
-  
+  data () {
+    return {
+      isModalMode: true
+    }
+  },
+  beforeDestroy() {
+    this.isModalMode = false;
+  },
 }
 </script>
 

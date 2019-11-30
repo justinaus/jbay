@@ -13,14 +13,16 @@ import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+import VScrollLock from 'v-scroll-lock'
+
 Vue.config.productionTip = false
 
 Vue.prototype.$routerPath = routerPath;
 Vue.prototype.$apiPath = apiPath;
 
 Vue.use(jvc.Plugin)
-
 Vue.use(BootstrapVue)
+Vue.use(VScrollLock)
 
 new Vue({
   router,
