@@ -10,7 +10,13 @@
       <Footer />
     </div>
     <slot name="popup" />
-    <PopAlert />
+    <PopAlert
+      v-if="isPopAlertVisible"
+      :isYN="false"
+      :popAlertText="popAlertText"
+      :popAlertTitle="popAlertTitle"
+      :popAlertBtnPrimaryText="popAlertBtnPrimaryText"
+      :popAlertBtnSecondaryText="popAlertBtnSecondaryText" />
   </div>
 </template>
 
