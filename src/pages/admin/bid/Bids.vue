@@ -15,6 +15,9 @@ export default {
   ],
   components: {
     PageLayout,
+  },
+  beforeMount() {
+    this.getData();
   }
 }
 </script>
