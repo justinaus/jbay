@@ -6,7 +6,8 @@ class ApiService {
   static instance;
 
   axios = axios.create({
-    baseURL: '/api',
+    // baseURL: '/api',
+    baseURL: 'https://jsonplaceholder.typicode.com',
   });
 
   static get shared() {
@@ -65,7 +66,16 @@ class ApiService {
 
   async get( url, config ) {
     const result = await this.axios.get( url, config )
-    .then( response => response.data )
+    .then( response => {
+      const totalCount= response.headers[ 'x-total-count' ];
+
+      if( !totalCount ) return response.data;
+
+      return {
+        totalCount: totalCount,
+        list: response.data
+      }
+     } )
     .catch( ( error ) => {
       console.log('error: ' + error.message);
       return error;
