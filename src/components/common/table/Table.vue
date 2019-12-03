@@ -12,9 +12,13 @@
       <tbody>
         <!-- <slot v-if="!this.dataList || this.dataList.length < 1" name="emptyList"></slot>
         <slot v-else name="rows"></slot> -->
-        <template v-for="item in dataList">
+        <!-- <template v-for="item in dataList">
           <slot name="row" :rowData="item" />
-        </template>
+        </template> -->
+
+        <slot name="rows" />
+
+        
 
       </tbody>
     </table>
@@ -54,10 +58,6 @@ export default {
     maxRowCount: Number,
     maxPaginationCount: Number,
     totalPageCount: Number,
-    disableHover: {
-      type: Boolean,
-      default: false
-    }
   },
   computed: {
     startPageIndex() {
@@ -161,27 +161,5 @@ export default {
 </script>
 
 <style scoped>
-/* 리스트 table */
-.tbl_list >>> table{width:100%}
-.tbl_list >>> thead th:first-child,
-.tbl_list >>> tbody td:first-child{padding-left:24px}
-.tbl_list >>> thead th:last-child,
-.tbl_list >>> tbody td:last-child{padding-right:24px}
-.tbl_list >>> tbody td{height:32px;padding:8px 12px;border-bottom:1px solid #e1e1e1;line-height:18px;text-align:center;word-break:break-all;letter-spacing:-.02em}
-.tbl_list >>> tbody td .link_subject{display:block;width:100%;text-align:left;text-decoration:underline}
-.tbl_list >>> tbody td .link_point{font-weight:normal;font-family:'NotoSansKR_M', sans-serif;color:#5551CE}
-/* 리스트 table_hover */
-.tbl_list >>> tbody tr:hover td{background-color:#fbfbfb}
-.tbl_list >>> tbody tr:hover td .link_subject{color:#5551CE}
-/* 리스트 table_active */
-.tbl_list >>> tbody .tr_select td{border-bottom-color:#5551CE;background:#fbfbfb url(/assets/images/bg_table_active.png) repeat-x;background-size:1px 1px}
-.tbl_list >>> tbody .tr_select td:first-child{border-left:1px solid #5551CE}
-.tbl_list >>> tbody .tr_select td:last-child{border-right:1px solid #5551CE}
-.tbl_list >>> tbody .tr_select .link_subject{color:#5551CE}
-.tbl_list >>> tbody .tr_select + .tr_select td{background:#fbfbfb}
-/* 리스티 빈타입 */
-.tbl_list >>> .td_empty{overflow:hidden;line-height:32px}
-/* 노호버타입 */
-.tbl_nohover >>> tbody tr:hover td{background-color:inherit}
-.tbl_nohover >>> tbody tr:hover td .link_subject{color:inherit}
+
 </style>
