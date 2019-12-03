@@ -12,3 +12,9 @@ export default {
   name: 'app'
 }
 </script>
+
+<style>
+li {
+  list-style:none
+}
+</style>
