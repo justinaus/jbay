@@ -8,16 +8,16 @@
 </template>
 
 <script>
-import LocalStorageManager from '@/LocalStorageManager'
-import ApiService from '@/services/ApiService'
+import LocalStorageManager from "@/LocalStorageManager";
+import ApiService from "@/services/ApiService";
 
 export default {
   data() {
     return {
-      loginId: '',
-      password: '',
-      isWrong: false,
-    }
+      loginId: "",
+      password: "",
+      isWrong: false
+    };
   },
   methods: {
     onClickSubmit() {
@@ -30,30 +30,30 @@ export default {
       const loginId = this.loginId.trim();
       const password = this.password.trim();
 
-      if( !loginId || !password ) return;
+      if (!loginId || !password) return;
 
       const obj = {
         loginId: loginId,
         password: password
-      }
-      this.postLogin( obj );
+      };
+      this.postLogin(obj);
     },
-    async postLogin( obj ) {
-      const result = await ApiService.shared.login( obj );
-      
-      if( result.code !== '200' ) {
-        alert( result.text );
+    async postLogin(obj) {
+      const result = await ApiService.shared.login(obj);
+
+      if (result.code !== "200") {
+        alert(result.text);
         return;
       }
 
-      LocalStorageManager.shared.setLoginData( result.data );
+      LocalStorageManager.shared.setLoginData(result.data);
 
       const toPath = this.$route.query.redirect;
 
       this.$router.push({
         path: toPath || this.$routerPath.HOME
-      }); 
+      });
     }
   }
-}
+};
 </script>

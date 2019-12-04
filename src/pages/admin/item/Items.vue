@@ -37,29 +37,27 @@
 </template>
 
 <script>
-import PageLayout from '@/components/layout/PageLayout'
+import PageLayout from "@/components/layout/PageLayout";
 
-import ListPageMixin from '@/mixins/ListPageMixin'
+import ListPageMixin from "@/mixins/ListPageMixin";
 
-import { SHOW_ALERT_ACTION } from '@/store/modules/alert/action'
+import { SHOW_ALERT_ACTION } from "@/store/modules/alert/action";
 
 export default {
-  mixins: [
-    ListPageMixin,
-  ],
+  mixins: [ListPageMixin],
   components: {
-    PageLayout,
+    PageLayout
   },
   methods: {
     onClick() {
       const params = {
-        text: 'this is test.',
+        text: "this is test.",
         onClickPrimary: () => {
-          console.log( 123 );
+          console.log(123);
         }
-      }
-      this.$store.dispatch( SHOW_ALERT_ACTION, params );
+      };
+      this.$store.dispatch(SHOW_ALERT_ACTION, params);
     }
   }
-}
+};
 </script>

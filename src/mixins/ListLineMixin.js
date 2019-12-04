@@ -1,11 +1,11 @@
-import { makeQueryStringByObject } from 'jodash'
+import { makeQueryStringByObject } from "jodash";
 
 const ListLineMixin = {
   methods: {
-    getDetailPagePath( routerPath, id ) {
-      const strQuery = makeQueryStringByObject( this.$route.query );
+    getDetailPagePath(routerPath, id) {
+      const strQuery = makeQueryStringByObject(this.$route.query);
 
-      const path = `${ routerPath }/${ id }${ strQuery }`
+      const path = `${routerPath}/${id}${strQuery}`;
       return path;
     }
   }

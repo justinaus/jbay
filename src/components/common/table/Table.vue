@@ -17,34 +17,32 @@
         </template> -->
 
         <slot name="rows" />
-
-        
-
       </tbody>
     </table>
     <Pagination
       v-if="showPagination"
-      :startPageIndex='startPageIndex'
-      :showPageCount='showPageCount'
-      :selectedPageIndex='currentPageIndex'
-      :enabledFirst='enabledFirst'
-      :enabledEnd='enabledEnd'
-      :enabledPrevPage='enabledPrevPage'
-      :enabledNextPage='enabledNextPage'
-      :enabledPrevGroup='enabledPrevGroup'
-      :enabledNextGroup='enabledNextGroup'
-      @onClickPageNum='onClickPageNum'
-      @onClickEndPage='onClickEndPage'
-      @onClickPrevGroup='onClickPrevGroup'
-      @onClickNextGroup='onClickNextGroup' />
+      :startPageIndex="startPageIndex"
+      :showPageCount="showPageCount"
+      :selectedPageIndex="currentPageIndex"
+      :enabledFirst="enabledFirst"
+      :enabledEnd="enabledEnd"
+      :enabledPrevPage="enabledPrevPage"
+      :enabledNextPage="enabledNextPage"
+      :enabledPrevGroup="enabledPrevGroup"
+      :enabledNextGroup="enabledNextGroup"
+      @onClickPageNum="onClickPageNum"
+      @onClickEndPage="onClickEndPage"
+      @onClickPrevGroup="onClickPrevGroup"
+      @onClickNextGroup="onClickNextGroup"
+    />
   </div>
 </template>
 
 <script>
-import Pagination from './Pagination'
+import Pagination from "./Pagination";
 
 export default {
-  name: 'Table',
+  name: "Table",
   components: {
     Pagination
   },
@@ -57,17 +55,19 @@ export default {
     currentPageIndex: Number,
     maxRowCount: Number,
     maxPaginationCount: Number,
-    totalPageCount: Number,
+    totalPageCount: Number
   },
   computed: {
     startPageIndex() {
-      const paginationGroupIndex = this.getPaginationGroupIndex( this.currentPageIndex );
+      const paginationGroupIndex = this.getPaginationGroupIndex(
+        this.currentPageIndex
+      );
 
       const result = paginationGroupIndex * this.maxPaginationCount;
       return result;
     },
     showPageCount() {
-      const endPageIndex = this.getEndPageIndex( this.startPageIndex );
+      const endPageIndex = this.getEndPageIndex(this.startPageIndex);
       // if( endPageIndex < 0 )  return 0;
 
       const result = endPageIndex - this.startPageIndex + 1;
@@ -78,7 +78,7 @@ export default {
     },
     enabledEnd() {
       const lastPageIndex = this.getLastPageIndex();
-      
+
       return this.currentPageIndex !== lastPageIndex;
     },
     enabledPrevPage() {
@@ -86,80 +86,86 @@ export default {
     },
     enabledNextPage() {
       const lastPageIndex = this.getLastPageIndex();
-      
+
       return this.currentPageIndex < lastPageIndex;
     },
     enabledPrevGroup() {
-      const paginationGroupIndex = this.getPaginationGroupIndex( this.currentPageIndex );
+      const paginationGroupIndex = this.getPaginationGroupIndex(
+        this.currentPageIndex
+      );
 
       return paginationGroupIndex > 0;
     },
     enabledNextGroup() {
-      const currentGroupIndex = this.getPaginationGroupIndex( this.currentPageIndex );
+      const currentGroupIndex = this.getPaginationGroupIndex(
+        this.currentPageIndex
+      );
 
       const lastPageIndex = this.getLastPageIndex();
-      const lastPageGroupIndex = this.getPaginationGroupIndex( lastPageIndex );
+      const lastPageGroupIndex = this.getPaginationGroupIndex(lastPageIndex);
 
       return currentGroupIndex < lastPageGroupIndex;
     }
   },
   methods: {
-    getPaginationGroupIndex( pageIndex ) {
-      const result = Math.floor( pageIndex / this.maxPaginationCount );
+    getPaginationGroupIndex(pageIndex) {
+      const result = Math.floor(pageIndex / this.maxPaginationCount);
       return result;
     },
-    getEndPageIndex( startPageIndex ) {
+    getEndPageIndex(startPageIndex) {
       // if( this.totalItemCount < 0 ) return -1;
-      if( this.totalPageCount < 1 ) return 0;
+      if (this.totalPageCount < 1) return 0;
 
       const lastPageIndex = this.getLastPageIndex();
-      
+
       let maxPageIndex = startPageIndex + this.maxPaginationCount - 1;
 
-      const result = Math.min( lastPageIndex, maxPageIndex );
+      const result = Math.min(lastPageIndex, maxPageIndex);
 
       return result;
     },
     getLastPageIndex() {
       // if( this.totalItemCount < 0 ) return 0;
-      if( this.totalPageCount < 1 ) return 0;
+      if (this.totalPageCount < 1) return 0;
 
       const result = this.totalPageCount - 1;
 
       // const result = Math.floor( ( this.totalItemCount - 1 ) / this.maxRowCount );
       return result;
     },
-    onChangePage( pageIndex ) {
-      this.$emit( 'onChangePage', pageIndex );
+    onChangePage(pageIndex) {
+      this.$emit("onChangePage", pageIndex);
     },
-    onClickPageNum( pageIndex ) {
-      this.onChangePage( pageIndex );
+    onClickPageNum(pageIndex) {
+      this.onChangePage(pageIndex);
     },
     onClickEndPage() {
       const lastPageIndex = this.getLastPageIndex();
 
-      if( lastPageIndex < 0 ) {
+      if (lastPageIndex < 0) {
         return;
       }
 
-      this.onChangePage( lastPageIndex );
+      this.onChangePage(lastPageIndex);
     },
     onClickPrevGroup() {
-      const paginationGroupIndex = this.getPaginationGroupIndex( this.currentPageIndex );
+      const paginationGroupIndex = this.getPaginationGroupIndex(
+        this.currentPageIndex
+      );
       const toGroupIndex = paginationGroupIndex - 1;
 
-      this.onChangePage( toGroupIndex * this.maxPaginationCount );
+      this.onChangePage(toGroupIndex * this.maxPaginationCount);
     },
     onClickNextGroup() {
-      const paginationGroupIndex = this.getPaginationGroupIndex( this.currentPageIndex );
+      const paginationGroupIndex = this.getPaginationGroupIndex(
+        this.currentPageIndex
+      );
       const toGroupIndex = paginationGroupIndex + 1;
 
-      this.onChangePage( toGroupIndex * this.maxPaginationCount );
+      this.onChangePage(toGroupIndex * this.maxPaginationCount);
     }
   }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

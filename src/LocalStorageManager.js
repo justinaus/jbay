@@ -1,11 +1,10 @@
-
 class LocalStorageManager {
   static instance;
 
-  LOGIN_DATA = 'loginData';
-  
+  LOGIN_DATA = "loginData";
+
   static get shared() {
-    if( this.instance ) {
+    if (this.instance) {
       return this.instance;
     }
 
@@ -14,38 +13,38 @@ class LocalStorageManager {
   }
 
   getLoginData() {
-    const str = localStorage.getItem( this.LOGIN_DATA );
-    if( !str )  return null;
+    const str = localStorage.getItem(this.LOGIN_DATA);
+    if (!str) return null;
 
-    const obj = JSON.parse( str );
+    const obj = JSON.parse(str);
     return obj;
   }
-  setLoginData( objData ) {
-    const strData = JSON.stringify( objData );
-      
-    localStorage.setItem( this.LOGIN_DATA, strData );
+  setLoginData(objData) {
+    const strData = JSON.stringify(objData);
+
+    localStorage.setItem(this.LOGIN_DATA, strData);
   }
 
-  assignLoginData( objNew ) {
+  assignLoginData(objNew) {
     let loginData = this.getLoginData();
-    if( !loginData ) return;
+    if (!loginData) return;
 
-    Object.assign( loginData, objNew );
+    Object.assign(loginData, objNew);
 
-    this.setLoginData( loginData );
+    this.setLoginData(loginData);
   }
 
-  changeToken( newToken ) {
+  changeToken(newToken) {
     let loginData = this.getLoginData();
-    if( !loginData ) return;
+    if (!loginData) return;
 
     loginData.token = newToken;
 
-    this.setLoginData( loginData );
+    this.setLoginData(loginData);
   }
 
   clear() {
-    localStorage.removeItem( this.LOGIN_DATA );
+    localStorage.removeItem(this.LOGIN_DATA);
     // localStorage.clear();
   }
 
@@ -58,4 +57,4 @@ class LocalStorageManager {
   }
 }
 
-export default LocalStorageManager
+export default LocalStorageManager;

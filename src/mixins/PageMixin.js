@@ -1,5 +1,3 @@
-const PageMixin = {
-  
-};
+const PageMixin = {};
 
 export default PageMixin;

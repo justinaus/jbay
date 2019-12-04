@@ -9,12 +9,12 @@
 
 <script>
 export default {
-  name: 'app'
-}
+  name: "app"
+};
 </script>
 
 <style>
 li {
-  list-style:none
+  list-style: none;
 }
 </style>

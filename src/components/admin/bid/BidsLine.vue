@@ -3,7 +3,7 @@
     <td>{{ rowData.userId }}</td>
     <td>{{ rowData.id }}</td>
     <td>
-      <router-link :to='toPath'>
+      <router-link :to="toPath">
         <span v-html="rowData.title"></span>
       </router-link>
     </td>
@@ -12,22 +12,20 @@
 </template>
 
 <script>
-import ListLineMixin from '@/mixins/ListLineMixin'
+import ListLineMixin from "@/mixins/ListLineMixin";
 
-import { makeQueryStringByObject } from 'jodash'
+import { makeQueryStringByObject } from "jodash";
 
 export default {
-  mixins: [
-    ListLineMixin
-  ],
+  mixins: [ListLineMixin],
   props: {
-    rowData: Object,
+    rowData: Object
   },
   computed: {
     toPath() {
       const { id } = this.rowData;
-      return this.getDetailPagePath( this.$routerPath.BID, id );
-    },
-  },
-}
+      return this.getDetailPagePath(this.$routerPath.BID, id);
+    }
+  }
+};
 </script>

@@ -5,16 +5,14 @@
 </template>
 
 <script>
-import PageLayout from '@/components/layout/PageLayout'
+import PageLayout from "@/components/layout/PageLayout";
 
-import PageMixin from '@/mixins/PageMixin'
+import PageMixin from "@/mixins/PageMixin";
 
 export default {
-  mixins: [
-    PageMixin,
-  ],
+  mixins: [PageMixin],
   components: {
-    PageLayout,
+    PageLayout
   }
-}
+};
 </script>
