@@ -19,31 +19,31 @@
 </template>
 
 <script>
-import Popup from "@/components/layout/popup/Popup";
+import Popup from '@/components/layout/popup/Popup';
 
-import { HIDE_ALERT_ACTION } from "@/store/modules/alert/action";
+import { HIDE_ALERT_ACTION } from '@/store/modules/alert/action';
 
 export default {
   components: {
-    Popup
+    Popup,
   },
   props: {
     isYN: Boolean,
     popAlertText: String,
     popAlertTitle: {
       type: String,
-      default: "Alert"
+      default: 'Alert',
     },
     popAlertBtnPrimaryText: {
       type: String,
-      default: "Ok"
+      default: 'Ok',
     },
     popAlertBtnSecondaryText: {
       type: String,
-      default: "Cancel"
+      default: 'Cancel',
     },
     funcClickPrimary: Function,
-    funcClickSecondary: Function
+    funcClickSecondary: Function,
   },
   methods: {
     onClickPrimary() {
@@ -55,8 +55,8 @@ export default {
       this.$store.dispatch(HIDE_ALERT_ACTION);
 
       if (this.funcClickSecondary) this.funcClickSecondary();
-    }
-  }
+    },
+  },
 };
 </script>
 

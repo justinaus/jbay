@@ -1,7 +1,7 @@
 class LocalStorageManager {
   static instance;
 
-  LOGIN_DATA = "loginData";
+  LOGIN_DATA = 'loginData';
 
   static get shared() {
     if (this.instance) {

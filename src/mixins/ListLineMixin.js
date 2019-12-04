@@ -1,4 +1,4 @@
-import { makeQueryStringByObject } from "jodash";
+import { makeQueryStringByObject } from 'jodash';
 
 const ListLineMixin = {
   methods: {
@@ -7,8 +7,8 @@ const ListLineMixin = {
 
       const path = `${routerPath}/${id}${strQuery}`;
       return path;
-    }
-  }
+    },
+  },
 };
 
 export default ListLineMixin;

@@ -1,12 +1,12 @@
-import PageMixin from "./PageMixin";
+import PageMixin from './PageMixin';
 
-import ApiService from "@/services/ApiService";
+import ApiService from '@/services/ApiService';
 
-import { makeQueryStringByObject } from "jodash";
+import { makeQueryStringByObject } from 'jodash';
 
-import { SHOW_ALERT_ACTION } from "@/store/modules/alert/action";
+import { SHOW_ALERT_ACTION } from '@/store/modules/alert/action';
 
-import { board } from "@/constants/options";
+import { board } from '@/constants/options';
 
 const ListPageMixin = {
   mixins: [PageMixin],
@@ -16,7 +16,7 @@ const ListPageMixin = {
       maxRowCount: board.DEFAULT_ROW_COUNT,
       maxPaginationCount: board.DEFAULT_PAGINATION_COUNT,
       totalPageCount: 0,
-      currentPageIndex: 0
+      currentPageIndex: 0,
     };
   },
   methods: {
@@ -43,8 +43,8 @@ const ListPageMixin = {
 
       this.totalPageCount = Math.ceil(totalCount / this.maxRowCount);
       this.list = list;
-    }
-  }
+    },
+  },
 };
 
 export default ListPageMixin;

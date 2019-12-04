@@ -16,19 +16,19 @@
 </template>
 
 <script>
-import MenuItem from "./MenuItem";
+import MenuItem from './MenuItem';
 
-import { menu as adminMenu } from "@/constants/admin/menu";
+import { menu as adminMenu } from '@/constants/admin/menu';
 
 export default {
   components: {
-    MenuItem
+    MenuItem,
   },
   data() {
     return {
       menuDataList: [],
       selectedMenuId: null,
-      selectedSubMenuId: null
+      selectedSubMenuId: null,
     };
   },
   beforeMount() {
@@ -37,6 +37,6 @@ export default {
     const { menuId, subMenuId } = this.$route.meta;
     this.selectedMenuId = menuId;
     if (subMenuId) this.selectedSubMenuId = subMenuId;
-  }
+  },
 };
 </script>

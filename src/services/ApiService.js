@@ -1,13 +1,13 @@
-import axios from "axios";
-import apiPath from "./apiPath";
-import LocalStorageManager from "@/LocalStorageManager";
+import axios from 'axios';
+import apiPath from './apiPath';
+import LocalStorageManager from '@/LocalStorageManager';
 
 class ApiService {
   static instance;
 
   axios = axios.create({
     // baseURL: '/api',
-    baseURL: "https://jsonplaceholder.typicode.com"
+    baseURL: 'https://jsonplaceholder.typicode.com',
   });
 
   static get shared() {
@@ -31,16 +31,16 @@ class ApiService {
     await new Promise(resolve => setTimeout(resolve, 500));
 
     const retSuccess = {
-      code: "200",
+      code: '200',
       data: {
-        token: "abcde",
-        refreshToken: "fghij",
+        token: 'abcde',
+        refreshToken: 'fghij',
         isAdmin: true,
-        loginId: "justinaus"
-      }
+        loginId: 'justinaus',
+      },
     };
     const retFail = {
-      text: "failed!"
+      text: 'failed!',
     };
     const result = isSuccess ? retSuccess : retFail;
     // === temp test ====================================
@@ -68,21 +68,21 @@ class ApiService {
     const result = await this.axios
       .get(url, config)
       .then(response => {
-        const totalCount = response.headers["x-total-count"];
+        const totalCount = response.headers['x-total-count'];
 
         if (!totalCount) return response.data;
 
         return {
           totalCount: totalCount,
-          list: response.data
+          list: response.data,
         };
       })
       .catch(error => {
-        console.log("error: " + error.message);
+        console.log('error: ' + error.message);
         return error;
       });
 
-    if (result && result.code === "401") {
+    if (result && result.code === '401') {
       const newConfig = await this.retryToken(config);
       if (!newConfig) return null;
 
@@ -98,11 +98,11 @@ class ApiService {
       .post(url, obj, config)
       .then(response => response.data)
       .catch(error => {
-        console.log("error: " + error.message);
+        console.log('error: ' + error.message);
         return error;
       });
 
-    if (result && result.code === "401") {
+    if (result && result.code === '401') {
       const newConfig = await this.retryToken(config);
       if (!newConfig) return null;
 
@@ -116,7 +116,7 @@ class ApiService {
   async retryToken(config) {
     const refreshToken = await this.refreshToken();
 
-    if (!refreshToken || refreshToken.code !== "200") {
+    if (!refreshToken || refreshToken.code !== '200') {
       // go to login.
       return null;
     }
@@ -136,7 +136,7 @@ class ApiService {
 
     const token = {
       token: loginData.token,
-      refreshToken: loginData.refreshToken
+      refreshToken: loginData.refreshToken,
     };
 
     const url = `/api${apiPath.TOKEN}`;
@@ -147,7 +147,7 @@ class ApiService {
       .post(url, token, config)
       .then(response => response.data)
       .catch(error => {
-        console.log("error: " + error.message);
+        console.log('error: ' + error.message);
         return error;
       });
 
@@ -155,7 +155,7 @@ class ApiService {
   }
 
   getConfig(contentType, userCodeForce) {
-    let userCode = "type0"; // 초기값.
+    let userCode = 'type0'; // 초기값.
 
     const loginData = LocalStorageManager.shared.getLoginData();
     if (loginData && loginData.userCode) {
@@ -168,9 +168,9 @@ class ApiService {
 
     const config = {
       headers: {
-        "Content-Type": contentType ? contentType : "application/json",
-        "X-Custom-Header": userCode
-      }
+        'Content-Type': contentType ? contentType : 'application/json',
+        'X-Custom-Header': userCode,
+      },
       // data: {},
     };
 

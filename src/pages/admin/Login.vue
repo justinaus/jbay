@@ -8,15 +8,15 @@
 </template>
 
 <script>
-import LocalStorageManager from "@/LocalStorageManager";
-import ApiService from "@/services/ApiService";
+import LocalStorageManager from '@/LocalStorageManager';
+import ApiService from '@/services/ApiService';
 
 export default {
   data() {
     return {
-      loginId: "",
-      password: "",
-      isWrong: false
+      loginId: '',
+      password: '',
+      isWrong: false,
     };
   },
   methods: {
@@ -34,14 +34,14 @@ export default {
 
       const obj = {
         loginId: loginId,
-        password: password
+        password: password,
       };
       this.postLogin(obj);
     },
     async postLogin(obj) {
       const result = await ApiService.shared.login(obj);
 
-      if (result.code !== "200") {
+      if (result.code !== '200') {
         alert(result.text);
         return;
       }
@@ -51,9 +51,9 @@ export default {
       const toPath = this.$route.query.redirect;
 
       this.$router.push({
-        path: toPath || this.$routerPath.HOME
+        path: toPath || this.$routerPath.HOME,
       });
-    }
-  }
+    },
+  },
 };
 </script>

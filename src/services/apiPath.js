@@ -1,5 +1,5 @@
 const apiPath = {
-  LOGIN: "/login",
+  LOGIN: '/login',
 
-  TOKEN: "/token"
+  TOKEN: '/token',
 };

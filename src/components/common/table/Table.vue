@@ -39,28 +39,28 @@
 </template>
 
 <script>
-import Pagination from "./Pagination";
+import Pagination from './Pagination';
 
 export default {
-  name: "Table",
+  name: 'Table',
   components: {
-    Pagination
+    Pagination,
   },
   props: {
     dataList: Array,
     showPagination: {
       type: Boolean,
-      default: true
+      default: true,
     },
     currentPageIndex: Number,
     maxRowCount: Number,
     maxPaginationCount: Number,
-    totalPageCount: Number
+    totalPageCount: Number,
   },
   computed: {
     startPageIndex() {
       const paginationGroupIndex = this.getPaginationGroupIndex(
-        this.currentPageIndex
+        this.currentPageIndex,
       );
 
       const result = paginationGroupIndex * this.maxPaginationCount;
@@ -91,21 +91,21 @@ export default {
     },
     enabledPrevGroup() {
       const paginationGroupIndex = this.getPaginationGroupIndex(
-        this.currentPageIndex
+        this.currentPageIndex,
       );
 
       return paginationGroupIndex > 0;
     },
     enabledNextGroup() {
       const currentGroupIndex = this.getPaginationGroupIndex(
-        this.currentPageIndex
+        this.currentPageIndex,
       );
 
       const lastPageIndex = this.getLastPageIndex();
       const lastPageGroupIndex = this.getPaginationGroupIndex(lastPageIndex);
 
       return currentGroupIndex < lastPageGroupIndex;
-    }
+    },
   },
   methods: {
     getPaginationGroupIndex(pageIndex) {
@@ -134,7 +134,7 @@ export default {
       return result;
     },
     onChangePage(pageIndex) {
-      this.$emit("onChangePage", pageIndex);
+      this.$emit('onChangePage', pageIndex);
     },
     onClickPageNum(pageIndex) {
       this.onChangePage(pageIndex);
@@ -150,7 +150,7 @@ export default {
     },
     onClickPrevGroup() {
       const paginationGroupIndex = this.getPaginationGroupIndex(
-        this.currentPageIndex
+        this.currentPageIndex,
       );
       const toGroupIndex = paginationGroupIndex - 1;
 
@@ -158,13 +158,13 @@ export default {
     },
     onClickNextGroup() {
       const paginationGroupIndex = this.getPaginationGroupIndex(
-        this.currentPageIndex
+        this.currentPageIndex,
       );
       const toGroupIndex = paginationGroupIndex + 1;
 
       this.onChangePage(toGroupIndex * this.maxPaginationCount);
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -12,20 +12,20 @@
 </template>
 
 <script>
-import ListLineMixin from "@/mixins/ListLineMixin";
+import ListLineMixin from '@/mixins/ListLineMixin';
 
-import { makeQueryStringByObject } from "jodash";
+import { makeQueryStringByObject } from 'jodash';
 
 export default {
   mixins: [ListLineMixin],
   props: {
-    rowData: Object
+    rowData: Object,
   },
   computed: {
     toPath() {
       const { id } = this.rowData;
       return this.getDetailPagePath(this.$routerPath.BID, id);
-    }
-  }
+    },
+  },
 };
 </script>

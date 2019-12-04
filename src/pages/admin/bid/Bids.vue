@@ -17,21 +17,21 @@
 </template>
 
 <script>
-import PageLayout from "@/components/layout/PageLayout";
-import Table from "@/components/common/table/Table";
-import BidsLine from "@/components/admin/bid/BidsLine";
+import PageLayout from '@/components/layout/PageLayout';
+import Table from '@/components/common/table/Table';
+import BidsLine from '@/components/admin/bid/BidsLine';
 
-import ListPageMixin from "@/mixins/ListPageMixin";
+import ListPageMixin from '@/mixins/ListPageMixin';
 
 export default {
   mixins: [ListPageMixin],
   components: {
     PageLayout,
     Table,
-    BidsLine
+    BidsLine,
   },
   beforeMount() {
     this.getData();
-  }
+  },
 };
 </script>

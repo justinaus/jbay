@@ -27,7 +27,7 @@
 
 <script>
 export default {
-  name: "Pagination",
+  name: 'Pagination',
   props: {
     startPageIndex: Number,
     showPageCount: Number,
@@ -37,11 +37,11 @@ export default {
     enabledPrevPage: Boolean,
     enabledNextPage: Boolean,
     enabledPrevGroup: Boolean,
-    enabledNextGroup: Boolean
+    enabledNextGroup: Boolean,
   },
   methods: {
     dispatchPageClicked(toPageIndex) {
-      this.$emit("onClickPageNum", toPageIndex);
+      this.$emit('onClickPageNum', toPageIndex);
     },
     onClickNum(pageIndex) {
       this.dispatchPageClicked(pageIndex);
@@ -56,15 +56,15 @@ export default {
       this.dispatchPageClicked(0);
     },
     onClickEndPage() {
-      this.$emit("onClickEndPage");
+      this.$emit('onClickEndPage');
     },
     onClickPrevGroup() {
-      this.$emit("onClickPrevGroup");
+      this.$emit('onClickPrevGroup');
     },
     onClickNextGroup() {
-      this.$emit("onClickNextGroup");
-    }
-  }
+      this.$emit('onClickNextGroup');
+    },
+  },
 };
 </script>
 <style>

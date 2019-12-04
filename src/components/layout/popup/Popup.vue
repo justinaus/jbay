@@ -8,12 +8,12 @@
 export default {
   data() {
     return {
-      isModalMode: true
+      isModalMode: true,
     };
   },
   beforeDestroy() {
     this.isModalMode = false;
-  }
+  },
 };
 </script>
 

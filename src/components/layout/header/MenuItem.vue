@@ -14,25 +14,25 @@
 </template>
 
 <script>
-import MenuItem from "./MenuItem";
+import MenuItem from './MenuItem';
 
 export default {
-  name: "MenuItem",
+  name: 'MenuItem',
   components: {
-    MenuItem
+    MenuItem,
   },
   props: {
     text: String,
     link: String,
     isSelected: Boolean,
     arrSub: Array,
-    selectedSubMenuId: String
+    selectedSubMenuId: String,
   },
   computed: {
     hasSubMenu() {
       return this.arrSub && this.arrSub.length > 0;
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -1,11 +1,11 @@
 const menuId = {
-  ITEM: "item",
-  BID: "bid",
+  ITEM: 'item',
+  BID: 'bid',
 
-  MANAGEMENT: "management",
+  MANAGEMENT: 'management',
 
-  MANAGEMENT_USER: "managementUser",
-  MANAGEMENT_ETC: "managementEtc"
+  MANAGEMENT_USER: 'managementUser',
+  MANAGEMENT_ETC: 'managementEtc',
 };
 
 export default menuId;
