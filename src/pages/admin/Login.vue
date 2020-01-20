@@ -4,6 +4,7 @@
     <Input :value.sync="loginId" />
     <Input :value.sync="password" type="password" @onEnterKey="onEnterKey" />
     <button @click="onClickSubmit">login</button>
+    test id: admin, pass: 1
   </div>
 </template>
 

@@ -26,7 +26,7 @@ class ApiService {
     // const result = await this.post( url, obj, config );
 
     // === temp test ====================================
-    const isSuccess = obj.loginId === obj.password;
+    const isSuccess = obj.loginId === 'admin' && obj.password === '1';
 
     await new Promise(resolve => setTimeout(resolve, 500));
 
