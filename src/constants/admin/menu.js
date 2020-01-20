@@ -3,9 +3,9 @@ import menuId from '../menuId';
 
 const menu = [
   {
-    id: menuId.ITEM,
+    id: menuId.PRODUCT,
     text: 'Item',
-    link: routerPath.ITEMS,
+    link: routerPath.PRODUCTS,
   },
   {
     id: menuId.BID,

@@ -1,5 +1,5 @@
 const menuId = {
-  ITEM: 'item',
+  PRODUCT: 'product',
   BID: 'bid',
 
   MANAGEMENT: 'management',

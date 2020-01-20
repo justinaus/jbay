@@ -4,7 +4,7 @@ const apiPath = {
   TOKEN: '/token',
 
   // 임시로 jsonplaceholder.typicode.com api 사용.
-  ITEMS: '/todos',
+  PRODUCTS: '/todos',
 };
 
 export default apiPath;

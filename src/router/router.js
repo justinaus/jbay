@@ -25,27 +25,27 @@ const router = new Router({
   routes: [
     {
       path: routerPath.HOME,
-      redirect: routerPath.ITEMS,
+      redirect: routerPath.PRODUCTS,
     },
     {
       path: routerPath.ADMIN_LOGIN,
       component: () => import('../pages/admin/Login.vue'),
     },
     {
-      path: routerPath.ITEMS,
+      path: routerPath.PRODUCTS,
       meta: {
-        menuId: menuId.ITEM,
+        menuId: menuId.PRODUCT,
         requiresAuth: true,
       },
-      component: () => import('../pages/admin/item/Items.vue'),
+      component: () => import('../pages/admin/product/Products.vue'),
     },
     {
-      path: routerPath.ITEM,
+      path: routerPath.PRODUCT,
       meta: {
-        menuId: menuId.ITEM,
+        menuId: menuId.PRODUCT,
         requiresAuth: true,
       },
-      component: () => import('../pages/admin/item/Item.vue'),
+      component: () => import('../pages/admin/product/Product.vue'),
     },
     {
       path: routerPath.BIDS,

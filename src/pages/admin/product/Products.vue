@@ -1,6 +1,6 @@
 <template>
   <PageLayout>
-    items
+    products
     <Table
       :dataList="dataList"
       :currentPageIndex="currentPageIndex"
@@ -50,7 +50,7 @@ export default {
       this.currentPageIndex = 1;
 
       const startIndex = this.currentPageIndex * this.maxRowCount;
-      const path = `${this.$apiPath.ITEMS}?_start=${startIndex + 1}&_limit=${
+      const path = `${this.$apiPath.PRODUCTS}?_start=${startIndex + 1}&_limit=${
         this.maxRowCount
       }`;
 
