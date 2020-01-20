@@ -8,8 +8,20 @@
       :maxPaginationCount="maxPaginationCount"
       :totalPageCount="totalPageCount"
     >
+      <template v-slot:colgroup>
+        <col style="width: 100px;" />
+        <col style="width: 100px;" />
+        <col style="width: 100px;" />
+        <col style="width: 100px;" />
+      </template>
+      <template v-slot:tr>
+        <th>id</th>
+        <th>userId</th>
+        <th>title</th>
+        <th>completed</th>
+      </template>
       <template v-slot:rows>
-        <div>123</div>
+        <ProductListLine v-for="item in dataList" :key="item.id" :rowData="item" />
       </template>
     </Table>
   </PageLayout>
@@ -18,6 +30,7 @@
 <script>
 import PageLayout from '@/components/layout/PageLayout';
 import Table from '@/components/common/table/Table';
+import ProductListLine from '@/components/admin/product/ProductListLine';
 
 import ListPageMixin from '@/mixins/ListPageMixin';
 
@@ -32,6 +45,7 @@ export default {
   components: {
     PageLayout,
     Table,
+    ProductListLine,
   },
   data() {
     return {
@@ -47,12 +61,10 @@ export default {
   },
   methods: {
     async getData() {
-      this.currentPageIndex = 1;
+      // this.currentPageIndex = 1;
 
       const startIndex = this.currentPageIndex * this.maxRowCount;
-      const path = `${this.$apiPath.PRODUCTS}?_start=${startIndex + 1}&_limit=${
-        this.maxRowCount
-      }`;
+      const path = `${this.$apiPath.PRODUCTS}?_start=${startIndex}&_limit=${this.maxRowCount}`;
 
       const result = await ApiService.shared.getData(path);
 
