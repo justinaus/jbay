@@ -73,7 +73,7 @@ class ApiService {
         if (!totalCount) return response.data;
 
         return {
-          totalCount: totalCount,
+          totalCount: Number.parseInt(totalCount),
           list: response.data,
         };
       })
