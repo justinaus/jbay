@@ -1,22 +1,17 @@
 <template>
   <div>
     <table>
-      <!-- <colgroup>
+      <colgroup>
         <slot name="colgroup" />
       </colgroup>
       <thead>
         <tr>
           <slot name="tr" />
         </tr>
-      </thead> -->
+      </thead>
       <tbody>
-        <!-- <slot v-if="!this.dataList || this.dataList.length < 1" name="emptyList"></slot>
-        <slot v-else name="rows"></slot> -->
-        <!-- <template v-for="item in dataList">
-          <slot name="row" :rowData="item" />
-        </template> -->
-
-        <slot name="rows" />
+        <slot v-if="!this.dataList || this.dataList.length < 1" name="empty" />
+        <slot v-else name="rows" />
       </tbody>
     </table>
     <Pagination
