@@ -1,29 +1,35 @@
 <template>
   <PageLayout>
     products
-    <Table
-      :dataList="dataList"
-      :currentPageIndex="currentPageIndex"
-      :maxRowCount="maxRowCount"
-      :maxPaginationCount="maxPaginationCount"
-      :totalPageCount="totalPageCount"
-    >
-      <template v-slot:colgroup>
-        <col style="width: 100px;" />
-        <col style="width: 100px;" />
-        <col style="width: 100px;" />
-        <col style="width: 100px;" />
-      </template>
-      <template v-slot:tr>
-        <th>id</th>
-        <th>userId</th>
-        <th>title</th>
-        <th>completed</th>
-      </template>
-      <template v-slot:rows>
-        <ProductListLine v-for="item in dataList" :key="item.id" :rowData="item" />
-      </template>
-    </Table>
+    <div class="container">
+      <Table
+        :dataList="dataList"
+        :currentPageIndex="currentPageIndex"
+        :maxRowCount="maxRowCount"
+        :maxPaginationCount="maxPaginationCount"
+        :totalPageCount="totalPageCount"
+      >
+        <template v-slot:colgroup>
+          <col style="width: 40px;" />
+          <col style="width: 40px;" />
+          <col style="width: 100px;" />
+          <col style="width: 40px;" />
+        </template>
+        <template v-slot:tr>
+          <th>id</th>
+          <th>userId</th>
+          <th>title</th>
+          <th>completed</th>
+        </template>
+        <template v-slot:rows>
+          <ProductListLine
+            v-for="item in dataList"
+            :key="item.id"
+            :rowData="item"
+          />
+        </template>
+      </Table>
+    </div>
   </PageLayout>
 </template>
 
@@ -64,7 +70,9 @@ export default {
       // this.currentPageIndex = 1;
 
       const startIndex = this.currentPageIndex * this.maxRowCount;
-      const path = `${this.$apiPath.PRODUCTS}?_start=${startIndex}&_limit=${this.maxRowCount}`;
+      const path = `${this.$apiPath.PRODUCTS}?_start=${startIndex}&_limit=${
+        this.maxRowCount
+      }`;
 
       const result = await ApiService.shared.getData(path);
 
@@ -74,3 +82,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.container {
+  width: 600px;
+}
+</style>

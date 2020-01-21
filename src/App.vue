@@ -3,7 +3,7 @@
     <router-view></router-view>
     <!-- 여기 공용 팝업.
     pagelayout을 안타는 페이지도 있다. ex) login, join.
-     -->
+    -->
   </div>
 </template>
 
@@ -16,5 +16,18 @@ export default {
 <style>
 li {
   list-style: none;
+}
+table {
+  width: 100%;
+  min-width: 100%;
+  table-layout: fixed;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: keep-all;
+  /* word-break:break-all; */
 }
 </style>

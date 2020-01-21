@@ -3,7 +3,7 @@
     <td>{{ rowData.id }}</td>
     <td>{{ rowData.userId }}</td>
     <!-- 링크, 말줄임. -->
-    <td>{{ rowData.title }}</td>
+    <td class="ellipsis">{{ rowData.title }}</td>
     <td>{{ rowData.completed ? 'Y' : 'N' }}</td>
   </tr>
 </template>
