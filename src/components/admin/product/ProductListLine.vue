@@ -2,14 +2,17 @@
   <tr>
     <td>{{ rowData.id }}</td>
     <td>{{ rowData.userId }}</td>
-    <!-- 링크, 말줄임. -->
-    <td class="ellipsis">{{ rowData.title }}</td>
+    <td class="ellipsis">
+      <router-link :to="toPath">{{ rowData.title }}</router-link>
+    </td>
     <td>{{ rowData.completed ? 'Y' : 'N' }}</td>
   </tr>
 </template>
 
 <script>
 import ListLineMixin from '@/mixins/ListLineMixin';
+
+import { makePathWithQuery } from '@/utils/urlUtils';
 
 export default {
   mixins: [ListLineMixin],
@@ -20,6 +23,19 @@ export default {
       userId: Number,
       title: String,
       completed: Boolean,
+    },
+  },
+  computed: {
+    toPath() {
+      const { id } = this.rowData;
+      if (!id) return '';
+
+      const ret = makePathWithQuery(
+        this.$routerPath.PRODUCT,
+        id,
+        this.$route.query,
+      );
+      return ret;
     },
   },
 };

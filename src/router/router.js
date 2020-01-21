@@ -40,7 +40,7 @@ const router = new Router({
       component: () => import('../pages/admin/product/Products.vue'),
     },
     {
-      path: routerPath.PRODUCT,
+      path: routerPath.PRODUCT + '/:id',
       meta: {
         menuId: menuId.PRODUCT,
         requiresAuth: true,

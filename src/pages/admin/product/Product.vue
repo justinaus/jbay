@@ -1,7 +1,5 @@
 <template>
-  <PageLayout>
-    item
-  </PageLayout>
+  <PageLayout>{{ product }}</PageLayout>
 </template>
 
 <script>
@@ -13,6 +11,9 @@ export default {
   mixins: [PageMixin],
   components: {
     PageLayout,
+  },
+  beforeMount() {
+    console.log(this.$route.params);
   },
 };
 </script>
