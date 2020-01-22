@@ -9,7 +9,7 @@
     @blur="onBlur"
     @input="onInput"
     ref="input"
-    v-on:keyup.13="onKeyUpEnter"
+    v-on:keyup.13="onEnterKeyUp"
   />
 </template>
 
