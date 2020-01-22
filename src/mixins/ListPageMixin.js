@@ -1,38 +1,46 @@
+import PageLayout from '@/components/layout/PageLayout';
+import Table from '@/components/common/table/Table';
 import PageMixin from './PageMixin';
-
 import ApiService from '@/services/ApiService';
-
-import { makeQueryStringByObject } from 'jodash';
-
 import { SHOW_ALERT_ACTION } from '@/store/modules/alert/action';
-
+import { makeQueryStringByObject } from 'jodash';
 import { board } from '@/constants/options';
 
 const ListPageMixin = {
   mixins: [PageMixin],
+  components: {
+    PageLayout,
+    Table,
+  },
   data() {
     return {
-      list: [],
+      dataList: [],
+      currentPageIndex: 0,
+      totalPageCount: 0,
       maxRowCount: board.DEFAULT_ROW_COUNT,
       maxPaginationCount: board.DEFAULT_PAGINATION_COUNT,
-      totalPageCount: 0,
-      currentPageIndex: 0,
     };
   },
   methods: {
-    async getData() {
-      // 임시.
-      const path = `/todos`;
-
+    getParams() {
       const queryCloned = Object.assign({}, this.$route.query);
 
-      if (!queryCloned._start)
+      // 필수 값.
+      if (!queryCloned._start) {
         queryCloned._start = this.currentPageIndex * this.maxRowCount;
-      if (!queryCloned._limit) queryCloned._limit = this.maxRowCount;
+      }
+      if (!queryCloned._limit) {
+        queryCloned._limit = this.maxRowCount;
+      }
 
-      const strQuery = makeQueryStringByObject(queryCloned);
+      const ret = makeQueryStringByObject(queryCloned);
+      return ret;
+    },
+    async getData() {
+      const params = this.getParams();
+      const path = `${this.$apiPath.PRODUCTS}${params}`;
 
-      const result = await ApiService.shared.getData(path + strQuery);
+      const result = await ApiService.shared.getData(path);
 
       const { list, totalCount } = result;
 
@@ -42,7 +50,20 @@ const ListPageMixin = {
       }
 
       this.totalPageCount = Math.ceil(totalCount / this.maxRowCount);
-      this.list = list;
+      this.dataList = list;
+    },
+    onChangePage(pageIndex) {
+      const params = {
+        _start: pageIndex * this.maxRowCount,
+      };
+
+      let query = Object.assign({}, this.$route.query, params);
+
+      this.$router.replace({ query: query });
+
+      this.currentPageIndex = pageIndex;
+
+      this.getData();
     },
   },
 };
