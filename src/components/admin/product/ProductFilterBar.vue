@@ -1,10 +1,6 @@
 <template>
   <div>
-    <Radio
-      :name="radioData.name"
-      :dataList="radioData.dataList"
-      :selectedId.sync="radioData.selectedId"
-    />
+    <Radio name="radio0" :dataList="radioDatas" :selectedId.sync="radioId" />
     <Input :value.sync="inputValue" @onEnterKeyUp="onSearch" />
     <button @click="onSearch">Search</button>
   </div>
@@ -19,24 +15,28 @@ export default {
     Input,
     Radio,
   },
+  props: {
+    defaultInputValue: String,
+    defaultRadioId: String,
+    radioDatas: Array,
+  },
   data() {
     return {
-      inputValue: '',
-      radioData: {
-        name: 'radio0',
-        dataList: [
-          { id: 'id', text: 'id' },
-          { id: 'userId', text: 'userId' },
-          { id: 'title', text: 'title' },
-          { id: 'completed', text: 'completed' },
-        ],
-        selectedId: 'title',
-      },
+      inputValue: this.defaultInputValue,
+      radioId: this.defaultRadioId,
     };
   },
   methods: {
     onSearch() {
-      console.log('search', this.radioData.selectedId, this.inputValue);
+      const inputValue = this.inputValue.trim();
+      if (!inputValue) return;
+
+      const ret = {
+        radioId: this.radioId,
+        inputValue: inputValue,
+      };
+
+      this.$emit('onSearch', ret);
     },
   },
 };

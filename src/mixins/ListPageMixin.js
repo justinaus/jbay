@@ -21,6 +21,9 @@ const ListPageMixin = {
       maxPaginationCount: board.DEFAULT_PAGINATION_COUNT,
     };
   },
+  beforeMount() {
+    this.checkByQuery();
+  },
   methods: {
     getParams() {
       const queryCloned = Object.assign({}, this.$route.query);
@@ -44,13 +47,30 @@ const ListPageMixin = {
 
       const { list, totalCount } = result;
 
-      if (!list || !totalCount) {
-        this.$store.dispatch(SHOW_ALERT_ACTION, { text: String(result) });
-        return;
-      }
+      // if (!list || !totalCount) {
+      //   this.$store.dispatch(SHOW_ALERT_ACTION, { text: String(result) });
+      //   return;
+      // }
 
       this.totalPageCount = Math.ceil(totalCount / this.maxRowCount);
       this.dataList = list;
+    },
+    onSearch(obj) {
+      this.reset();
+
+      const params = this.getSearchParams(obj);
+
+      params._start = 0;
+
+      // navigationduplicated 에러 때문에 catch.
+      this.$router.replace({ query: params }).catch(err => {});
+
+      this.getData();
+    },
+    reset() {
+      // this.dataList = [];
+      this.currentPageIndex = 0;
+      // this.totalPageCount = 0;
     },
     onChangePage(pageIndex) {
       const params = {

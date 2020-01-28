@@ -1,7 +1,12 @@
 <template>
   <PageLayout>
     <div class="container">
-      <ProductFilterBar />
+      <ProductFilterBar
+        :radioDatas="radioDatas"
+        :defaultRadioId="defaultRadioId"
+        :defaultInputValue="defaultInputValue"
+        @onSearch="onSearch"
+      />
       <Table
         :dataList="dataList"
         :currentPageIndex="currentPageIndex"
@@ -29,6 +34,9 @@
             :rowData="item"
           />
         </template>
+        <template v-slot:empty>
+          <div>No Data</div>
+        </template>
       </Table>
     </div>
   </PageLayout>
@@ -49,10 +57,46 @@ export default {
   data() {
     return {
       apiPath: this.$apiPath.PRODUCTS,
+      radioDatas: [
+        { id: 'id', text: 'id' },
+        { id: 'userId', text: 'userId' },
+        { id: 'title', text: 'title' },
+        { id: 'completed', text: 'completed' },
+      ],
+      defaultRadioId: 'title',
+      defaultInputValue: '',
     };
   },
   beforeMount() {
     this.getData();
+  },
+  methods: {
+    checkByQuery() {
+      const query = this.$route.query;
+
+      if (query.id) {
+        this.defaultRadioId = 'id';
+        this.defaultInputValue = query.id;
+      } else if (query.userId) {
+        this.defaultRadioId = 'userId';
+        this.defaultInputValue = query.userId;
+      } else if (query.title) {
+        this.defaultRadioId = 'title';
+        this.defaultInputValue = query.title;
+      } else if (query.completed) {
+        this.defaultRadioId = 'completed';
+        this.defaultInputValue = query.completed;
+      }
+    },
+    getSearchParams(obj) {
+      const { radioId, inputValue } = obj;
+
+      let params = {};
+
+      params[radioId] = inputValue;
+
+      return params;
+    },
   },
 };
 </script>
