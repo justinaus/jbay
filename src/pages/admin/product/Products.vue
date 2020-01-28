@@ -1,7 +1,7 @@
 <template>
   <PageLayout>
     <div class="container">
-      <ProductFilterBar
+      <ProductsFilterBar
         :radioDatas="radioDatas"
         :defaultRadioId="defaultRadioId"
         :defaultInputValue="defaultInputValue"
@@ -28,7 +28,7 @@
           <th>completed</th>
         </template>
         <template v-slot:rows>
-          <ProductListLine
+          <ProductsLine
             v-for="item in dataList"
             :key="item.id"
             :rowData="item"
@@ -43,16 +43,16 @@
 </template>
 
 <script>
-import ProductListLine from '@/components/admin/product/ProductListLine';
-import ProductFilterBar from '@/components/admin/product/ProductFilterBar';
+import ProductsLine from '@/components/admin/product/ProductsLine';
+import ProductsFilterBar from '@/components/admin/product/ProductsFilterBar';
 
 import ListPageMixin from '@/mixins/ListPageMixin';
 
 export default {
   mixins: [ListPageMixin],
   components: {
-    ProductListLine,
-    ProductFilterBar,
+    ProductsLine,
+    ProductsFilterBar,
   },
   data() {
     return {
