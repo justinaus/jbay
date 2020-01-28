@@ -41,7 +41,7 @@ export default {
       const from = this.selectedId;
       const to = e.target.value;
 
-      console.log(from, to);
+      // console.log(from, to);
 
       this.$emit('onChange', to, from);
     },

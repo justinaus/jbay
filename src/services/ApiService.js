@@ -70,7 +70,7 @@ class ApiService {
       .then(response => {
         const totalCount = response.headers['x-total-count'];
 
-        if (!totalCount) return response.data;
+        if (!totalCount) return response;
 
         return {
           totalCount: Number.parseInt(totalCount),
