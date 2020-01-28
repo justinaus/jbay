@@ -3,9 +3,13 @@
     <div>
       <Header />
 
+      <hr />
+
       <Content>
         <slot />
       </Content>
+
+      <hr />
 
       <Footer />
     </div>
