@@ -4,7 +4,7 @@ import menuId from '../menuId';
 const menu = [
   {
     id: menuId.PRODUCT,
-    text: 'Item',
+    text: 'Product',
     link: routerPath.PRODUCTS,
   },
   {
