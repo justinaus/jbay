@@ -1,30 +1,39 @@
 <template>
-  <li>
-    <td>{{ rowData.userId }}</td>
+  <tr>
     <td>{{ rowData.id }}</td>
-    <td>
-      <router-link :to="toPath">
-        <span v-html="rowData.title"></span>
-      </router-link>
+    <td>{{ rowData.userId }}</td>
+    <td class="ellipsis">
+      <router-link :to="toPath">{{ rowData.title }}</router-link>
     </td>
-    <td>{{ rowData.completed }}</td>
-  </li>
+  </tr>
 </template>
 
 <script>
 import ListLineMixin from '@/mixins/ListLineMixin';
 
-import { makeQueryStringByObject } from 'jodash';
+import { makePathWithQuery } from '@/utils/urlUtils';
 
 export default {
   mixins: [ListLineMixin],
+  components: {},
   props: {
-    rowData: Object,
+    rowData: {
+      id: Number,
+      userId: Number,
+      title: String,
+    },
   },
   computed: {
     toPath() {
       const { id } = this.rowData;
-      return this.getDetailPagePath(this.$routerPath.BID, id);
+      if (!id) return '';
+
+      const ret = makePathWithQuery(
+        this.$routerPath.BID,
+        id,
+        this.$route.query,
+      );
+      return ret;
     },
   },
 };
