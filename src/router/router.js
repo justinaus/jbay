@@ -56,7 +56,7 @@ const router = new Router({
       component: () => import('../pages/admin/bid/Bids.vue'),
     },
     {
-      path: routerPath.BID,
+      path: routerPath.BID + '/:id',
       meta: {
         menuId: menuId.BID,
         requiresAuth: true,
