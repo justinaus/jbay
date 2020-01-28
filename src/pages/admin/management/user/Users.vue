@@ -1,7 +1,5 @@
 <template>
-  <PageLayout>
-    users
-  </PageLayout>
+  <PageLayout>users</PageLayout>
 </template>
 
 <script>
@@ -13,6 +11,12 @@ export default {
   mixins: [ListPageMixin],
   components: {
     PageLayout,
+  },
+  methods: {
+    checkByQuery() {},
+    getSearchParams(obj) {
+      return null;
+    },
   },
 };
 </script>
