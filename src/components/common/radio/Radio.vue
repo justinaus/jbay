@@ -5,7 +5,7 @@
       :key="index"
       :name="name"
       :id="item.id"
-      :text="item.text"
+      :text="item.text || item.id"
       :disabled="disabled || item.disabled"
       :selectedId.sync="selectedIdSync"
       @onChange="onChange"
