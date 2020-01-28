@@ -41,7 +41,7 @@ const ListPageMixin = {
     },
     async getData() {
       const params = this.getParams();
-      const path = `${this.$apiPath.PRODUCTS}${params}`;
+      const path = `${this.apiPath}${params}`;
 
       const result = await ApiService.shared.getData(path);
 
