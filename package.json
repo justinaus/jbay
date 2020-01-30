@@ -13,6 +13,7 @@
     "bootstrap-vue": "^2.1.0",
     "core-js": "^2.6.5",
     "jodash": "^1.2.0",
+    "lodash": "^4.17.15",
     "query-string": "^6.10.1",
     "v-scroll-lock": "^1.1.0",
     "vue": "^2.6.10",
