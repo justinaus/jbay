@@ -4,12 +4,38 @@
     <!-- 여기 공용 팝업.
     pagelayout을 안타는 페이지도 있다. ex) login, join.
     -->
+    <PopAlert
+      v-if="isPopAlertVisible"
+      :isYN="false"
+      :popAlertText="popAlertText"
+      :popAlertTitle="popAlertTitle"
+      :popAlertBtnPrimaryText="popAlertBtnPrimaryText"
+      :popAlertBtnSecondaryText="popAlertBtnSecondaryText"
+    />
   </div>
 </template>
 
 <script>
+import PopAlert from '@/components/common/PopAlert';
+
+import { mapState } from 'vuex';
+
 export default {
   name: 'app',
+  components: {
+    PopAlert,
+  },
+  computed: {
+    ...mapState({
+      isPopAlertVisible: state => state.alert.isVisible,
+      popAlertTitle: state => state.alert.title,
+      popAlertText: state => state.alert.text,
+      popAlertBtnPrimaryText: state => state.alert.btnPrimaryText,
+      popAlertBtnSecondaryText: state => state.alert.btnSecondaryText,
+      onClickPopAlertPrimary: state => state.alert.onClickPrimary,
+      onClickPopAlertSecondary: state => state.alert.onClickSecondary,
+    }),
+  },
 };
 </script>
 
