@@ -4,6 +4,10 @@
     <div>userId: {{ itemData && itemData.userId }}</div>
     <div>title: {{ itemData && itemData.title }}</div>
     <div>completed: {{ itemData && itemData.completed }}</div>
+    <!-- /src -->
+    <img alt="Vue logo" src="@/assets/logo.png" />
+    <!-- /public -->
+    <img src="/assets/images/test.png" />
   </PageLayout>
 </template>
 
