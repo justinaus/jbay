@@ -14,9 +14,12 @@ export default {
 </script>
 
 <style>
-li {
+ul {
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
+
 table {
   width: 100%;
   min-width: 100%;
