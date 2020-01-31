@@ -1,5 +1,5 @@
 <template>
-  <li :class="{ selected: isSelected && !hasSubMenu }">
+  <li :class="['container', { selected: isSelected && !hasSubMenu }]">
     <router-link :to="link">{{ text }}</router-link>
     <ul v-if="hasSubMenu">
       <MenuItem
@@ -44,5 +44,9 @@ a {
 
 .selected a {
   color: orange;
+}
+
+.container {
+  padding-left: 20px;
 }
 </style>
