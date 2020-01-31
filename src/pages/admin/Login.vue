@@ -10,7 +10,8 @@
 
 <script>
 import LocalStorageManager from '@/LocalStorageManager';
-import ApiService from '@/services/ApiService';
+import http from '@/services/http';
+import { SHOW_ALERT_ACTION } from '@/store/modules/alert/action';
 
 export default {
   data() {
@@ -40,14 +41,23 @@ export default {
       this.postLogin(obj);
     },
     async postLogin(obj) {
-      const result = await ApiService.shared.login(obj);
+      // fake call
+      const { loginId, password } = obj;
 
-      if (result.code !== '200') {
-        alert(result.text);
+      const isSuccess = loginId === 'admin' && password === '1';
+
+      if (!isSuccess) {
+        this.$store.dispatch(SHOW_ALERT_ACTION, { text: 'failed' });
         return;
       }
 
-      LocalStorageManager.shared.setLoginData(result.data);
+      const result = {
+        token: 'abcde',
+        refreshToken: 'fghij',
+        isAdmin: true,
+        loginId: 'justinaus',
+      };
+      LocalStorageManager.shared.setLoginData(result);
 
       const toPath = this.$route.query.redirect;
 

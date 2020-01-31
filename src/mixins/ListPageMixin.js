@@ -1,10 +1,10 @@
 import PageLayout from '@/components/layout/PageLayout';
 import Table from '@/components/common/table/Table';
 import PageMixin from './PageMixin';
-import ApiService from '@/services/ApiService';
 import { SHOW_ALERT_ACTION } from '@/store/modules/alert/action';
 import { makeQueryStringByObject } from 'jodash';
 import { board } from '@/constants/options';
+import http from '@/services/http';
 
 const ListPageMixin = {
   mixins: [PageMixin],
@@ -43,17 +43,21 @@ const ListPageMixin = {
       const params = this.getParams();
       const path = `${this.apiPath}${params}`;
 
-      const result = await ApiService.shared.getData(path);
+      http
+        .get(path)
+        .then(response => {
+          const totalCount = response.headers['x-total-count'];
 
-      const { list, totalCount } = result;
+          if (!totalCount) return;
 
-      // if (!list || !totalCount) {
-      //   this.$store.dispatch(SHOW_ALERT_ACTION, { text: String(result) });
-      //   return;
-      // }
+          const nTotalCount = Number.parseInt(totalCount);
 
-      this.totalPageCount = Math.ceil(totalCount / this.maxRowCount);
-      this.dataList = list;
+          this.totalPageCount = Math.ceil(nTotalCount / this.maxRowCount);
+          this.dataList = response.data;
+        })
+        .catch(error => {
+          this.$store.dispatch(SHOW_ALERT_ACTION, { text: String(error) });
+        });
     },
     onSearch(obj) {
       this.reset();

@@ -10,8 +10,8 @@
 <script>
 import PageLayout from '@/components/layout/PageLayout';
 import PageMixin from '@/mixins/PageMixin';
-import ApiService from '@/services/ApiService';
 import { SHOW_ALERT_ACTION } from '@/store/modules/alert/action';
+import http from '@/services/http';
 
 export default {
   mixins: [PageMixin],
@@ -34,15 +34,14 @@ export default {
     async getData(id) {
       const path = `${this.$apiPath.BIDS}/${id}`;
 
-      const result = await ApiService.shared.getData(path);
-
-      if (!result.data) {
-        this.itemData = null;
-        this.$store.dispatch(SHOW_ALERT_ACTION, { text: String(result) });
-        return;
-      }
-
-      this.itemData = result.data;
+      http
+        .get(path)
+        .then(response => {
+          this.itemData = response.data;
+        })
+        .catch(error => {
+          this.$store.dispatch(SHOW_ALERT_ACTION, { text: String(error) });
+        });
     },
   },
 };
