@@ -5,6 +5,7 @@ import menuId from '@/constants/menuId';
 import LocalStorageManager from '@/LocalStorageManager';
 import store from '@/store';
 import { HIDE_ALERT_ACTION } from '@/store/modules/alert/action';
+import { PROGRESS_END_ACTION } from '@/store/modules/progressbar/action';
 
 Vue.use(Router);
 
@@ -96,6 +97,7 @@ const router = new Router({
 
 router.beforeEach(async (to, _from, next) => {
   store.dispatch(HIDE_ALERT_ACTION);
+  store.dispatch(PROGRESS_END_ACTION);
 
   const loginData = LocalStorageManager.shared.getLoginData();
 
