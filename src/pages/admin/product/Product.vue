@@ -8,12 +8,20 @@
     <img alt="Vue logo" src="@/assets/logo.png" />
     <!-- /public -->
     <img src="/assets/images/test.png" />
+    <div>
+      <FileView />
+      <FileWrite />
+    </div>
   </PageLayout>
 </template>
 
 <script>
 import PageLayout from '@/components/layout/PageLayout';
 import PageMixin from '@/mixins/PageMixin';
+
+import FileView from '@/components/common/file/FileView';
+import FileWrite from '@/components/common/file/FileWrite';
+
 import { SHOW_ALERT_ACTION } from '@/store/modules/alert/action';
 import http from '@/services/http';
 
@@ -21,6 +29,8 @@ export default {
   mixins: [PageMixin],
   components: {
     PageLayout,
+    FileView,
+    FileWrite,
   },
   data() {
     return {
