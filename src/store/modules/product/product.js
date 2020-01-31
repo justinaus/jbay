@@ -14,8 +14,8 @@ export default {
     typeList: [],
   },
   actions: {
-    async [GET_PRODUCT_STATUS_LIST]({ state }) {
-      if (state.statusList.length > 0) return; // 한번만 호출.
+    async [GET_PRODUCT_STATUS_LIST](context) {
+      if (context.state.statusList.length > 0) return; // 한번만 호출.
 
       await new Promise(resolve => setTimeout(resolve, 500));
 
@@ -30,8 +30,8 @@ export default {
         items: arr,
       });
     },
-    async [GET_PRODUCT_TYPE_LIST]({ state }) {
-      if (state.typeList.length > 0) return; // 한번만 호출.
+    async [GET_PRODUCT_TYPE_LIST](context) {
+      if (context.state.typeList.length > 0) return; // 한번만 호출.
 
       await new Promise(resolve => setTimeout(resolve, 500));
 
@@ -47,10 +47,10 @@ export default {
         items: arr,
       });
     },
-    async [PRODUCT_LIST_ACTION](state) {
-      await state.dispatch(GET_PRODUCT_STATUS_LIST);
+    async [PRODUCT_LIST_ACTION](context) {
+      await context.dispatch(GET_PRODUCT_STATUS_LIST);
 
-      await state.dispatch(GET_PRODUCT_TYPE_LIST);
+      await context.dispatch(GET_PRODUCT_TYPE_LIST);
     },
   },
   mutations: {
