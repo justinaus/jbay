@@ -47,6 +47,7 @@ import ProductsLine from '@/components/admin/product/ProductsLine';
 import ProductsFilterBar from '@/components/admin/product/ProductsFilterBar';
 
 import ListPageMixin from '@/mixins/ListPageMixin';
+import { PRODUCT_LIST_ACTION } from '@/store/modules/product/action';
 
 export default {
   mixins: [ListPageMixin],
@@ -68,7 +69,9 @@ export default {
     };
   },
   beforeMount() {
-    this.getData();
+    this.$store.dispatch(PRODUCT_LIST_ACTION).then(() => {
+      this.getData();
+    });
   },
   methods: {
     checkByQuery() {

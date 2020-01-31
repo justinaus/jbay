@@ -8,12 +8,25 @@
       @onInputKeyword="onInputKeyword"
       @onSelectItem="onSelectItem"
     />
+    <div>
+      Status List
+      <ul>
+        <li v-for="item in statusList" :key="item.id">{{ item.text }}</li>
+      </ul>
+    </div>
+    <div>
+      Type List
+      <ul>
+        <li v-for="item in typeList" :key="item.id">{{ item.text }}</li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
 import Search from '@/components/common/input/Search';
 import Radio from '@/components/common/radio/Radio';
+import { mapState } from 'vuex';
 
 export default {
   components: {
@@ -31,6 +44,12 @@ export default {
       radioId: this.defaultRadioId,
       searchDataList: [],
     };
+  },
+  computed: {
+    ...mapState({
+      statusList: state => state.product.statusList,
+      typeList: state => state.product.typeList,
+    }),
   },
   methods: {
     onSearch() {
