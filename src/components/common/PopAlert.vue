@@ -7,12 +7,12 @@
       </header>
       <div class="content">{{ popAlertText }}</div>
       <footer>
-        <b-button variant="primary" @click="onClickPrimary">{{
-          popAlertBtnPrimaryText
-        }}</b-button>
-        <b-button variant="secondary" v-if="isYN" @click="onClickSecondary">{{
-          popAlertBtnSecondaryText
-        }}</b-button>
+        <button @click="onClickPrimary">
+          {{ popAlertBtnPrimaryText }}
+        </button>
+        <button v-if="isYN" @click="onClickSecondary">
+          {{ popAlertBtnSecondaryText }}
+        </button>
       </footer>
     </div>
   </Popup>
