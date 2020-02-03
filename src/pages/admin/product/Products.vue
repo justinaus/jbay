@@ -43,8 +43,8 @@
 </template>
 
 <script>
-import ProductsLine from '@/components/admin/product/ProductsLine';
-import ProductsFilterBar from '@/components/admin/product/ProductsFilterBar';
+import ProductsLine from '@/components/admin/product/list/ProductsLine';
+import ProductsFilterBar from '@/components/admin/product/list/ProductsFilterBar';
 
 import ListPageMixin from '@/mixins/ListPageMixin';
 import { PRODUCT_LIST_ACTION } from '@/store/modules/product/action';

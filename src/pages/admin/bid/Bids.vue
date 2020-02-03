@@ -37,8 +37,8 @@
 </template>
 
 <script>
-import BidsLine from '@/components/admin/bid/BidsLine';
-import BidsFilterBar from '@/components/admin/bid/BidsFilterBar';
+import BidsLine from '@/components/admin/bid/list/BidsLine';
+import BidsFilterBar from '@/components/admin/bid/list/BidsFilterBar';
 
 import ListPageMixin from '@/mixins/ListPageMixin';
 
