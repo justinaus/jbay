@@ -1,9 +1,12 @@
 <template>
   <PageLayout>
-    <div>id: {{ itemData && itemData.id }}</div>
-    <div>userId: {{ itemData && itemData.userId }}</div>
-    <div>title: {{ itemData && itemData.title }}</div>
-    <div>completed: {{ itemData && itemData.completed }}</div>
+    <div>id: {{ model.id }}</div>
+    <div>userId: {{ model.userId }}</div>
+    <div>
+      title:
+      <Input :value.sync="model.title" />
+    </div>
+    <div>completed: {{ model.completed }}</div>
     <!-- /src -->
     <img alt="Vue logo" src="@/assets/logo.png" />
     <!-- /public -->
@@ -12,6 +15,7 @@
       <FileView />
       <FileWrite />
     </div>
+    <button @click="onClickSave">Save</button>
   </PageLayout>
 </template>
 
@@ -21,9 +25,12 @@ import PageMixin from '@/mixins/PageMixin';
 
 import FileView from '@/components/common/file/FileView';
 import FileWrite from '@/components/common/file/FileWrite';
+import Input from '@/components/common/input/Input';
 
 import { SHOW_ALERT_ACTION } from '@/store/modules/alert/action';
 import http from '@/services/http';
+
+import ProductModel from './ProductModel';
 
 export default {
   mixins: [PageMixin],
@@ -31,10 +38,11 @@ export default {
     PageLayout,
     FileView,
     FileWrite,
+    Input,
   },
   data() {
     return {
-      itemData: null,
+      model: new ProductModel(),
     };
   },
   beforeMount() {
@@ -51,11 +59,17 @@ export default {
       http
         .get(path)
         .then(response => {
-          this.itemData = response.data;
+          // this.itemData = response.data;
+          this.model.setData(response.data);
         })
         .catch(error => {
           this.$store.dispatch(SHOW_ALERT_ACTION, { text: String(error) });
         });
+    },
+    onClickSave() {
+      const obj = this.model.getData();
+
+      console.log('save!', obj);
     },
   },
 };
