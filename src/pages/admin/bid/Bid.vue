@@ -3,7 +3,10 @@
     <div>id: {{ itemData && itemData.id }}</div>
     <div>userId: {{ itemData && itemData.userId }}</div>
     <div>title: {{ itemData && itemData.title }}</div>
-    <div>body: {{ itemData && itemData.body }}</div>
+    <div>
+      body:
+      <span v-html="itemData && itemData.body" />
+    </div>
   </PageLayout>
 </template>
 
