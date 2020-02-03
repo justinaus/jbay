@@ -11,10 +11,7 @@
     <img alt="Vue logo" src="@/assets/logo.png" />
     <!-- /public -->
     <img src="/assets/images/test.png" />
-    <div>
-      <FileView />
-      <FileWrite />
-    </div>
+    <ProductFiles />
     <button @click="onClickSave">Save</button>
   </PageLayout>
 </template>
@@ -22,9 +19,8 @@
 <script>
 import PageLayout from '@/components/layout/PageLayout';
 import PageMixin from '@/mixins/PageMixin';
+import ProductFiles from '@/components/admin/product/view/ProductFiles';
 
-import FileView from '@/components/common/file/FileView';
-import FileWrite from '@/components/common/file/FileWrite';
 import Input from '@/components/common/input/Input';
 
 import { SHOW_ALERT_ACTION } from '@/store/modules/alert/action';
@@ -36,8 +32,7 @@ export default {
   mixins: [PageMixin],
   components: {
     PageLayout,
-    FileView,
-    FileWrite,
+    ProductFiles,
     Input,
   },
   data() {
