@@ -1,6 +1,7 @@
 const routerPath = {
   HOME: '/',
   ADMIN_LOGIN: '/adminlogin',
+  USER_LOGIN: '/login',
 
   PRODUCTS: '/products',
   PRODUCT: '/product',

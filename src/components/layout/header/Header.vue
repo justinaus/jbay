@@ -12,6 +12,7 @@
         :selectedSubMenuId="selectedSubMenuId"
       />
     </ul>
+    <button @click="onClickLogout">Logout</button>
   </div>
 </template>
 
@@ -19,6 +20,9 @@
 import MenuItem from './MenuItem';
 
 import { menu as adminMenu } from '@/constants/admin/menu';
+import { menu as userMenu } from '@/constants/user/menu';
+
+import LocalStorageManager from '@/LocalStorageManager';
 
 export default {
   components: {
@@ -32,11 +36,26 @@ export default {
     };
   },
   beforeMount() {
-    this.menuDataList = adminMenu;
+    const isAdmin = LocalStorageManager.shared.getIsAdmin();
+
+    this.menuDataList = isAdmin ? adminMenu : userMenu;
 
     const { menuId, subMenuId } = this.$route.meta;
     this.selectedMenuId = menuId;
     if (subMenuId) this.selectedSubMenuId = subMenuId;
+  },
+  methods: {
+    onClickLogout() {
+      const isAdmin = LocalStorageManager.shared.getIsAdmin();
+
+      const path = isAdmin
+        ? this.$routerPath.ADMIN_LOGIN
+        : this.$routerPath.USER_LOGIN;
+
+      LocalStorageManager.shared.clear();
+
+      this.$router.push({ path });
+    },
   },
 };
 </script>

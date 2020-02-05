@@ -29,8 +29,12 @@ const router = new Router({
       redirect: routerPath.PRODUCTS,
     },
     {
+      path: routerPath.USER_LOGIN,
+      component: () => import('../pages/user/Login.vue'),
+    },
+    {
       path: routerPath.ADMIN_LOGIN,
-      component: () => import('../pages/admin/Login.vue'),
+      component: () => import('../pages/admin/AdminLogin.vue'),
     },
     {
       path: routerPath.PRODUCTS,
@@ -106,8 +110,9 @@ router.beforeEach(async (to, _from, next) => {
   if (isRequiresAuth) {
     if (!loginData) {
       next({
-        path: routerPath.ADMIN_LOGIN,
-        query: { redirect: to.fullPath },
+        path: routerPath.USER_LOGIN,
+        query:
+          to.fullPath === routerPath.HOME ? null : { redirect: to.fullPath },
       });
     } else {
       next();

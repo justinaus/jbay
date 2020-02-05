@@ -1,6 +1,6 @@
 <template>
   <div>
-    login
+    Admin Login
     <Input :value.sync="loginId" />
     <Input :value.sync="password" type="password" @onEnterKey="onEnterKey" />
     <button @click="onClickSubmit">login</button>
