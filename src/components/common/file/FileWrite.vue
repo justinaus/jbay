@@ -53,7 +53,7 @@ export default {
       http
         .post(path, formData, config)
         .then(response => {
-          console.log('upload success');
+          // console.log('upload success');
         })
         .catch(error => {
           this.$store.dispatch(SHOW_ALERT_ACTION, { text: String(error) });
