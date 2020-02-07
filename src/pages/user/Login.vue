@@ -61,9 +61,16 @@ export default {
 
       const toPath = this.$route.query.redirect;
 
-      this.$router.push({
-        path: toPath || this.$routerPath.HOME,
-      });
+      // vue-router.esm.js?8c4f:2051 Uncaught (in promise) undefined
+      // 로그인 후 홈으로 push -> beforeEnter에서 isadmin에 따라 다른 페이지 오픈.
+      // 근데 이런 오류 메시지가 뜸.
+      // 이전에 확인한 router replace - navigationduplicated 에러와 관련이 있는 것 같다.
+
+      this.$router
+        .push({
+          path: toPath || this.$routerPath.HOME,
+        })
+        .catch(err => {});
     },
   },
 };
