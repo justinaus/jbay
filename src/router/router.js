@@ -6,6 +6,8 @@ import LocalStorageManager from '@/LocalStorageManager';
 import store from '@/store';
 import { HIDE_ALERT_ACTION } from '@/store/modules/alert/action';
 import { PROGRESS_END_ACTION } from '@/store/modules/progressbar/action';
+import { menu as adminMenu } from '@/constants/admin/menu';
+import { menu as userMenu } from '@/constants/user/menu';
 
 Vue.use(Router);
 
@@ -26,7 +28,9 @@ const router = new Router({
   routes: [
     {
       path: routerPath.HOME,
-      redirect: routerPath.PRODUCTS,
+      // redirect: routerPath.PRODUCTS,
+      // admin home: bids, user home: products.
+      meta: { requiresAuth: true },
     },
     {
       path: routerPath.USER_LOGIN,
@@ -42,7 +46,10 @@ const router = new Router({
         menuId: menuId.PRODUCT,
         requiresAuth: true,
       },
-      component: () => import('../pages/admin/product/Products.vue'),
+      // component: () => import('../pages/admin/product/Products.vue'),
+      // admin/user same path, different component.
+      // shared/component 에서 분기.
+      component: () => import('../pages/shared/product/Products.vue'),
     },
     {
       path: routerPath.PRODUCT + '/:id',
@@ -103,23 +110,56 @@ router.beforeEach(async (to, _from, next) => {
   store.dispatch(HIDE_ALERT_ACTION);
   store.dispatch(PROGRESS_END_ACTION);
 
-  const loginData = LocalStorageManager.shared.getLoginData();
-
   const isRequiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
-  if (isRequiresAuth) {
-    if (!loginData) {
-      next({
-        path: routerPath.USER_LOGIN,
-        query:
-          to.fullPath === routerPath.HOME ? null : { redirect: to.fullPath },
-      });
-    } else {
-      next();
-    }
-  } else {
+  if (!isRequiresAuth) {
     next();
+    return;
   }
+
+  const loginData = LocalStorageManager.shared.getLoginData();
+
+  if (!loginData) {
+    next({
+      path: routerPath.USER_LOGIN,
+      query: to.fullPath === routerPath.HOME ? null : { redirect: to.fullPath },
+    });
+    return;
+  }
+
+  const isAdmin = LocalStorageManager.shared.getIsAdmin();
+
+  if (to.path === routerPath.HOME) {
+    next({
+      path: isAdmin ? routerPath.BIDS : routerPath.PRODUCTS,
+    });
+    return;
+  }
+
+  const menus = isAdmin ? adminMenu : userMenu;
+  const { menuId, subMenuId } = to.meta;
+
+  const isValidMenu = getIsValidMenuByAccount(menuId, subMenuId, menus);
+  if (!isValidMenu) {
+    next({
+      path: routerPath.HOME,
+    });
+    return;
+  }
+
+  next();
 });
+
+function getIsValidMenuByAccount(menuId, subMenuId, menus) {
+  const ret = menus.some(item => {
+    if (!item.arrSub) {
+      return item.id === menuId;
+    }
+
+    return item.arrSub.some(subItem => subItem.id === subMenuId);
+  });
+
+  return ret;
+}
 
 export default router;
