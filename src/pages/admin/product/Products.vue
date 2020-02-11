@@ -47,7 +47,8 @@ import ProductsLine from '@/components/admin/product/list/ProductsLine';
 import ProductsFilterBar from '@/components/admin/product/list/ProductsFilterBar';
 
 import ListPageMixin from '@/mixins/ListPageMixin';
-import { PRODUCT_LIST_ACTION } from '@/store/modules/product/action';
+// import { PRODUCT_LIST_ACTION } from '@/store/modules/product/action';
+import { PRODUCT_LIST_ACTION } from '@/store';
 
 export default {
   mixins: [ListPageMixin],
