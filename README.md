@@ -1,9 +1,7 @@
 # vue-admin
 
-Test
-
-- [Admin login](https://justinaus.github.io/adminlogin)
-- [User login](https://justinaus.github.io/login)
+- [Admin login](https://focused-meninsky-999774.netlify.com/adminlogin)
+- [User login](https://focused-meninsky-999774.netlify.com//login)
 
 ## Project setup
 
