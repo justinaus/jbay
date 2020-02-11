@@ -1,7 +1,7 @@
 # vue-admin
 
 - [Admin login](https://focused-meninsky-999774.netlify.com/adminlogin)
-- [User login](https://focused-meninsky-999774.netlify.com//login)
+- [User login](https://focused-meninsky-999774.netlify.com/login)
 
 ## Project setup
 
