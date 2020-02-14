@@ -153,7 +153,10 @@ router.beforeEach(async (to, _from, next) => {
 function getIsValidMenuByAccount(menuId, subMenuId, menus) {
   const ret = menus.some(item => {
     if (!item.arrSub) {
-      return item.id === menuId;
+      // return item.id === menuId;
+      const targerId = subMenuId || menuId;
+
+      return item.id === targerId;
     }
 
     return item.arrSub.some(subItem => subItem.id === subMenuId);
