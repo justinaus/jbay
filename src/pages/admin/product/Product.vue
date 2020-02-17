@@ -7,7 +7,7 @@
       <Input :value.sync="model.title" />
     </div>
     <div>completed: {{ model.completed }}</div>
-    <div>body: {{ model.body | capitalize }}</div>
+    <div>title2: {{ model.title | capitalize }}</div>
     <!-- /src -->
     <img alt="Vue logo" src="@/assets/logo.png" />
     <!-- /public -->
