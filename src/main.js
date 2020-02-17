@@ -8,6 +8,8 @@ import apiPath from './services/apiPath';
 import jvc from '@justinaus/vue-components';
 import '@justinaus/vue-components/dist/justinaus.css';
 
+import * as filters from './filters/filters';
+
 // import BootstrapVue from 'bootstrap-vue';
 
 // import 'bootstrap/dist/css/bootstrap.css';
@@ -23,6 +25,10 @@ Vue.prototype.$apiPath = apiPath;
 Vue.use(jvc.Plugin);
 // Vue.use(BootstrapVue);
 Vue.use(VScrollLock);
+
+Object.keys(filters).forEach(function(key) {
+  Vue.filter(key, filters[key]);
+});
 
 new Vue({
   router,

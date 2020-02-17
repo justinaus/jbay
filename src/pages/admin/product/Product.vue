@@ -7,6 +7,7 @@
       <Input :value.sync="model.title" />
     </div>
     <div>completed: {{ model.completed }}</div>
+    <div>body: {{ model.body | capitalize }}</div>
     <!-- /src -->
     <img alt="Vue logo" src="@/assets/logo.png" />
     <!-- /public -->
@@ -41,6 +42,9 @@ export default {
     };
   },
   beforeMount() {
+    const test = this.$options.filters.capitalize('test');
+    console.log(test);
+
     const { id } = this.$route.params;
 
     if (!id) return;
