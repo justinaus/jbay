@@ -33,6 +33,10 @@ export default {
   computed: {
     input: {
       get() {
+        if (this.maxLength && this.value.length > this.maxLength) {
+          this.$emit('update:value', this.value.slice(0, this.maxLength));
+        }
+
         return this.value;
       },
       set(value) {
