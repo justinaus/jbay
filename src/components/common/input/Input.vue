@@ -1,5 +1,6 @@
 <template>
   <input
+    :class="{ error: isError }"
     v-model="input"
     :type="type"
     :placeholder="placeholder"
@@ -29,6 +30,10 @@ export default {
     },
     placeholder: String,
     maxLength: Number,
+    isError: {
+      type: Boolean,
+      default: true,
+    },
   },
   computed: {
     input: {
@@ -64,3 +69,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.error {
+  border: 1px solid orange;
+}
+</style>
