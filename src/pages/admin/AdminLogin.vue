@@ -1,9 +1,11 @@
 <template>
   <div>
     Admin Login
-    <Input :value.sync="loginId" />
-    <Input :value.sync="password" type="password" @onEnterKey="onEnterKey" />
-    <button @click="onClickSubmit">login</button>
+    <div>
+      <Input :value.sync="loginId" />
+      <Input :value.sync="password" type="password" @onEnterKey="onEnterKey" />
+      <button @click="onClickSubmit">login</button>
+    </div>
     test id: admin, pass: 1
   </div>
 </template>
@@ -12,8 +14,12 @@
 import LocalStorageManager from '@/LocalStorageManager';
 import http from '@/services/http';
 import { SHOW_ALERT_ACTION } from '@/store/modules/alert/action';
+import Input from '@/components/common/input/Input';
 
 export default {
+  components: {
+    Input,
+  },
   data() {
     return {
       loginId: '',
