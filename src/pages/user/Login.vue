@@ -2,9 +2,14 @@
   <div>
     User Login
     <div>
-      <Input :value.sync="loginId" />
-      <Input :value.sync="password" type="password" @onEnterKey="onEnterKey" />
-      <button @click="onClickSubmit">login</button>
+      <Input :value.sync="loginId" data-cy="loginId" />
+      <Input
+        :value.sync="password"
+        type="password"
+        @onEnterKey="onEnterKey"
+        data-cy="password"
+      />
+      <button @click="onClickSubmit" data-cy="submit">login</button>
     </div>
     test id: user, pass: 1
   </div>

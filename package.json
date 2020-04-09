@@ -7,7 +7,8 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
-    "coverage:unit": "vue-cli-service test:unit --coverage"
+    "coverage:unit": "vue-cli-service test:unit --coverage",
+    "test:e2e": "vue-cli-service test:e2e"
   },
   "dependencies": {
     "@justinaus/vue-components": "^0.1.16",
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.12.0",
+    "@vue/cli-plugin-e2e-cypress": "^4.3.1",
     "@vue/cli-plugin-eslint": "^3.12.0",
     "@vue/cli-plugin-unit-jest": "^4.2.3",
     "@vue/cli-service": "^3.12.0",
